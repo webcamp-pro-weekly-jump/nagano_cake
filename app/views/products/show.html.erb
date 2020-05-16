@@ -4,12 +4,18 @@
 </div>
 
 <div class="col-xs-9">
-	<h1>商品一覧</h1>
       <%= attachment_image_tag @product, :image, :fill, 40, 40, format: 'jpeg', class: "img-rounded pull-left",fallback: "no_image.jpg",size:"50x50" %>
-      <%= @product.name %>
+      <h1>
+      	<%= @product.name %>
+      </h1>
       <%= @product.introduction %>
-      ¥<%= @product.price %>(税込)
+      <!--税込み価格の算出-->
+      <% tax_price = product.price * 1.08%>
+      ¥<%= tax_price.to_s(:delimited) %>(税込)
 
-      個数選択
-      <%= link_to 'カートに入れる', method: :post, class: "btn btn-primary" %>
+      <!--カートに入れる-->
+      <% form_for @cart_item do |f| %>
+      <%= f.hidden_field :product_id, :value => @product.id %>
+      <% f.number_field :quantity %>
+      <%= f.submit 'カートに入れる', method: :post, class: "btn btn-primary" %>
 </div>
