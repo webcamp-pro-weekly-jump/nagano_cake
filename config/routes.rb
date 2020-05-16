@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   #会員側
   devise_for :members
 
-  resources :cart_item, only:[:index, :update, :destroy, :create]
+  resources :cart_items, only:[:index, :update, :destroy, :create]
   delete 'cart_item/:id/empty', to: 'cart_item#destroy_all'
 
   resources :products, only:[:index, :show]
