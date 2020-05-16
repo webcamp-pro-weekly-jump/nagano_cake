@@ -1,32 +1,59 @@
 <div>
 	<h2>ショッピングカート</h2>
+	　<%= button_to 'カートを空にする', method: :delete, class: "btn btn-danger" %>
+
+	<!--カートの中身-->
 	 <table class="table-bordered">
 	 	<thead>
 	 		<tr>
 	 			<th>商品名</th>
 	 			<th>単価(税込)</th>
 	 			<th>数量</th>
-	 			<th colspan="3">小計</th>
+	 			<th>小計</th>
+	 			<th colspan="3"></th>
 	 		</tr>
 	 	</thead>
 
 	 	<tbody>
 	 		<tr>
-	 			<td></td>
-	 			<td></td>
-	 			<td></td>
-	 			<td></td>
-	 			<td><%= link_to '削除する' %></td>
+	 			<% sum = 0 %>
+	 			<% @cart_items.each do |cart_item| %>
+	 			<td>
+	 				<%= attachment_image_tag cart_item.product, :image, :fill, 20, 20, format: 'jpeg', class: "img-rounded pull-left",fallback: "no_image.jpg",size:"50x50" %>
+	 				<%= cart_item.product.name %>
+	 			</td>
+	 			<td>
+	 				<!--税込み価格の算出--->
+	 				<% tax_price = cart_item.product.price * 1.08 %>
+	 				<%= tax_price.to_s(:delimited) %>
+	 			</td>
+	 			<td>
+	 			    <%= form_for cart_item do |f| %>
+	 			    <% f.number_field :quantity %>
+	 			    <% f.submit '更新', class: 'btn btn-primary' %>
+	 			    <% end %>
+	 			</td>
+	 			<td>
+	 				<!--単価×数量--->
+	 				<% sub_total = tax_price * cart_item.quantity %>
+	 				<%= sub_total.to_s(:delimited) %>
+	 			</td>
+	 			<td>
+	 			    <%= link_to '削除する', method: :delete, class: "btn btn-danger" %>
+	 			</td>
+	 			<!--合計金額の計算式--->
+	 			<% sum+=sub_total %>
+	 			<% end %>
 	 		</tr>
 	 	</tbody>
 	 </table>
 
 	 <%= link_to '買い物を続ける', class: "btn btn-primary" %>
 
-	<table>
+	<table class="table-bordered">
 		<tr>
 			<td>合計金額</td>
-			<td></td>
+			<td><%= sum.to_s(:delimited) %></td>
 		</tr>
 	</table>
 
