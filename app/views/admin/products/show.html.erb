@@ -1,0 +1,26 @@
+<h2>商品詳細</h2>
+
+
+<h4>商品画像</h4>
+  <%= attachment_image_tag @product,:image, :fill, 60, 60, format: 'jpeg' %>
+
+<h4>商品名</h4>
+  <%= @product.name %>
+
+<h4>商品説明</h4>
+  <%= @product.introduction %>
+
+<h4>ジャンル</h4>
+  <%= Genre.find_by(id: @product.genre_id).name %>
+
+<h4>税込価格（税抜価格）</h4>
+  <%= @product.price %>
+
+<h4>販売ステータス</h4>
+  <% if @product.is_sale == true %>
+	  <%= "販売中" %>
+  <% else %>
+	  <%= "販売停止中" %>
+  <% end %>
+
+<%= link_to "編集する",  edit_admin_product_path(@product.id) %>
