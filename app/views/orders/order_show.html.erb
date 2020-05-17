@@ -1,0 +1,82 @@
+<div class = "container confirm">
+	<h2>注文情報確認<h2>
+
+	<!-- form_for -->
+    	<div class = "col col-xs-8">
+    		<table>
+	    		<thead>
+		  			<tr>
+				 		<th>商品名</th>
+						<th>単価（税込）</th>
+						<th>数量</th>
+						<th>小計</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					<% sum = 0 %><!-- 合計金額の計算に使用する -->
+					<% @cart_items.each do |cart_item| %>
+						<tr>
+							<!-- 商品名（+商品画像）の表示 -->
+							<td>
+								<%= attachment_image_tag(cart_item.product,
+								:image, :size => "50x50", fallback: "") %>
+								<!-- ↑画像を正しく読み込めなかった場合に表示する画像を用意する -->
+								<%= cart_item.product.name %>
+							</td>
+							<!-- ---------------------- -->
+
+							<!-- 単価（税込み）の表示 -->
+							<td>
+								<% zeikomi = cart_item.product.price * 1.08 %>
+								<%= zeikomi %>
+							</td>
+							<!-- ------------------ -->
+
+							<!-- 数量の表示 -->
+							<td>
+								<%= cart_item.quantity %>
+							</td>
+							<!-- --------- -->
+
+							<!-- 小計の表示 -->
+							<td>
+								<% syoukei = zeikomi * cart_item.quantity %>
+								<%= syoukei %>
+							</td>
+							<!-- --------- -->
+						</tr>
+						<% sum = sum + syoukei %>
+					<% end %>
+				</tbody>
+			</table>
+		</div>
+
+		<div class = "col col-xs-4">
+			<table>
+				<tbody>
+					<tr>
+						<td>送料</td>
+						<td><%= @order.postage %>円</td>
+						<td>商品合計</td>
+						<td><%= sum %>円</td>
+						<td>請求金額</td>
+						<td><%= sum + @order.postage %>円</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class = "container">
+			<div class = "row">
+				<div class = "col col-xs-8">
+					<h3>支払い方法</h3>
+				</div>
+			</div>
+		</div>
+
+	<div style="text-align: center">
+	  <%= form.submit "購入を確定する", class: "btn btn-success btn-lg col-xs-3" %>
+	</div>
+  <% end %>
+</div>

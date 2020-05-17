@@ -25,12 +25,18 @@ Rails.application.routes.draw do
 }
   root 'homes#top'
 
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/show_order' => 'orders#show_order', as: 'order_show_order'
+  get 'orders/success' => 'orders#success', as: 'order_success'
+
   resources :cart_items, only:[:index, :update, :destroy, :create]
-  delete 'cart_item/:id/empty', to: 'cart_item#destroy_all'
+  delete 'cart_item/empty', to: 'cart_items#destroy_all', as: 'empty_path'
 
   resources :products, only:[:index, :show]
 
-  resources :members, only:[:show]
+  resources :members
+  #退会処理のルーティング
+  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
