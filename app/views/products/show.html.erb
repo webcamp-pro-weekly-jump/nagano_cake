@@ -10,7 +10,7 @@
       </h1>
       <%= @product.introduction %>
       <!--税込み価格の算出-->
-      <% tax_price = @product.price * 1.08%>
+      <% tax_price = @product.price * 1.08 %>
       ¥<%= tax_price.to_s(:delimited) %>(税込)
 
       <!--カートに入れる-->
