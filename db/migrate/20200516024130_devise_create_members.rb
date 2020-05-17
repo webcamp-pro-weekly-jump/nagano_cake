@@ -34,7 +34,7 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       t.string :family_name
       t.string :first_name
       t.string :family_name_kana
-      t.string :family_name_kana
+      t.string :first_name_kana
       t.string :encrypted_password
       t.string :tel
       t.string :email
