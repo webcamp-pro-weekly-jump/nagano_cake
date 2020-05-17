@@ -2,7 +2,7 @@ class CartItemsController < ApplicationController
 	before_action :authenticate_member!
 
 	def index
-		@cart_items = CartItems.where(member_id: current_member.id)
+		@cart_items = CartItem.where(member_id: current_member.id)
 	end
 
 	def destroy
