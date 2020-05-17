@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.string "family_name"
     t.string "first_name"
     t.string "family_name_kana"
+    t.string "first_name_kana"
     t.string "tel"
     t.string "postal_code"
     t.string "address"
