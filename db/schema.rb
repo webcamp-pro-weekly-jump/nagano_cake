@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.string "tel"
     t.string "postal_code"
     t.string "address"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
@@ -97,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_sale"
+    t.boolean "is_sale", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

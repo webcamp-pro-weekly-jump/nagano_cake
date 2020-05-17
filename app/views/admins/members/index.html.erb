@@ -1,0 +1,20 @@
+<h2>会員一覧</h2>
+
+<% @members.each do |member| %>
+  <h4>会員ID</h4>
+  <%= member.id %>
+
+  <h4>氏名</h4>
+  <%= member.family_name %><%= member.first_name %>
+
+  <h4>メールアドレス</h4>
+  <%= member.email %>
+
+  <h4>ステータス</h4>
+	  <% if member.is_valid == true %>
+	    <%= "有効" %>
+	  <% else %>
+	    <%= "退会済" %>
+	  <% end %>
+
+<% end %>
