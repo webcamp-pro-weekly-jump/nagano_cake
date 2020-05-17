@@ -1,6 +1,6 @@
 <h2>ジャンル一覧</h2>
 
-<%= form_for(@genre, url: admin_genres_path) do |f| %>
+<%= form_for(@genre, url: admins_genres_path) do |f| %>
   <h4>ジャンル</h4>
 	<%= f.text_field :name %>
 	<%= f.radio_button :is_valid, true %>
@@ -15,5 +15,5 @@
   <%= genre.name %>
   <h4>状態</h4>
   <%= genre.is_valid %>
-  <%= link_to "編集する", edit_admin_genre_path(genre.id) %>
+  <%= link_to "編集する", edit_admins_genre_path(genre.id) %>
 <% end %>
