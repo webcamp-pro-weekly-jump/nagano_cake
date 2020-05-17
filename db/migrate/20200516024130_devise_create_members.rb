@@ -42,7 +42,6 @@ class DeviseCreateMembers < ActiveRecord::Migration[5.2]
       t.string :postal_code
       t.string :address
       t.boolean :is_valid, null: false, default: true
-      
       t.timestamps null: false
     end
 

@@ -5,4 +5,5 @@ class Member < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :cart_items, dependent: :destroy
+  belongs_to :admins, optional: true
 end

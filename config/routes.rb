@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -7,12 +7,14 @@ Rails.application.routes.draw do
 }
 
   namespace :admins do
-  	resources :products, only:[:new, :index, :show, :edit, :create, :update]
-  	resources :genres, only:[:new, :create, :index, :edit, :update]
+  	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
+  	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
+    resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
   end
   patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
   post '/admins/products/new' => 'admins/products#create' #ルーティングエラー発生のため追記
   patch '/admins/products/:id/edit' => 'admins/products#update' #同上
+  patch '/admins/members/:id/edit' => 'admins/members#update' #同上
 
 
   #会員側の処理

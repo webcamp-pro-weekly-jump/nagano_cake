@@ -14,6 +14,11 @@
   <h4>ジャンル</h4>
   <%= genre.name %>
   <h4>状態</h4>
-  <%= genre.is_valid %>
+
+  <% if genre.is_valid == true %>
+    <%= "有効" %>
+  <% else %>
+    <%= "無効" %>
+  <% end %>
   <%= link_to "編集する", edit_admins_genre_path(genre.id) %>
 <% end %>
