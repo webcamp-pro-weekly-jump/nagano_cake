@@ -23,6 +23,10 @@ Rails.application.routes.draw do
 }
   root 'homes#top'
 
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/show_order' => 'orders#show_order', as: 'order_show_order'
+  get 'orders/success' => 'orders#success', as: 'order_success'
+
   resources :cart_items, only:[:index, :update, :destroy, :create]
   delete 'cart_item/:id/empty', to: 'cart_item#destroy_all'
 
