@@ -1,0 +1,14 @@
+<div class="col-xs-3">
+ <h4>ジャンル検索</h4>
+
+</div>
+
+<div class="col-xs-9">
+	<h1>商品一覧</h1>
+     <% @products.each do |product| %>
+      <%= attachment_image_tag product, :image, :fill, 40, 40, format: 'jpeg', class: "img-rounded",fallback: "no_image.jpg",size:"50x50" %>
+      <%= product.name %>
+      <% tax_price = product.price * 1.08%>
+      ¥<%= tax_price.to_s(:delimited) %>
+    <% end %>
+</div>
