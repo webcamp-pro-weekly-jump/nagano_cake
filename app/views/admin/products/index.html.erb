@@ -1,0 +1,24 @@
+<h2>商品一覧</h2>
+<!-- eachメソッド -->
+<% @products.each do |product| %>
+	<h4>商品ID</h4>
+	<%= product.id %>
+
+	<h4>商品名</h4>
+	<%= product.name %>
+
+	<h4>税抜価格</h4>
+	<%= product.price %>
+
+	<h4>ジャンル</h4>
+	<%= Genre.find_by(id: product.genre_id).name %>
+	<!-- Genreと言う別のテーブルから情報を取得したい場合の書き方。ジャンルテーブルのidと商品テーブルのジャンルidが一致した物をfind_byで取得し、ジャンルテーブルのnameが欲しいのでこの書き方。 -->
+
+	<h4>ステータス</h4>
+	<% if product.is_sale == true %>
+	  <%= "販売中" %>
+	<% else %>
+	  <%= "販売停止中" %>
+	<% end %>
+
+<% end %>
