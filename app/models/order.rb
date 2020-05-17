@@ -8,6 +8,6 @@ class Order < ApplicationRecord
 	accepts_nested_attributes_for :order_items
 
 	# 送り先住所/郵便番号の空データの禁止
-	# validates :address, presence: true,
-	# validates :postal_code, presence: true,
+	validates :address, presence: true,
+	validates :postal_code, presence: true,
 end
