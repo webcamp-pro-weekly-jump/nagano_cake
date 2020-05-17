@@ -1,7 +1,19 @@
 class MembersController < ApplicationController
 	before_action :authenticate_member!
+	
 	def show
 		@member = Member.find(params[:id])
+	end
+
+	#退会処理：論理削除
+	def hide
+		@member = member.find(params[:id])
+		#フラグを立てる false(退会)にアップデート
+		@member.update(is_valid: false)
+		#会員ログアウトさせる
+		reset_session
+		#ログアウト後、ルートパスに飛ばす
+		redirect_to root_path
 	end
 
 	private
