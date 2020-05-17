@@ -6,13 +6,13 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
 
-  namespace :admin do
+  namespace :admins do
   	resources :products, only:[:new, :index, :show, :edit, :create, :update]
   	resources :genres, only:[:new, :create, :index, :edit, :update]
   end
-  patch '/admin/genres/:id/edit' => 'admin/genres#update' #ルーティングエラー発生のため追記
-  post '/admin/products/new' => 'admin/products#create' #ルーティングエラー発生のため追記
-  patch '/admin/products/:id/edit' => 'admin/products#update' #同上
+  patch '/admins/genres/:id/edit' => 'admin/genres#update' #ルーティングエラー発生のため追記
+  post '/admins/products/new' => 'admin/products#create' #ルーティングエラー発生のため追記
+  patch '/admins/products/:id/edit' => 'admin/products#update' #同上
 
 
   #会員側の処理

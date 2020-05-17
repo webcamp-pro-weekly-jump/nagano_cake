@@ -1,8 +1,7 @@
-class Admin::ProductsController < ApplicationController
+class Admins::ProductsController < ApplicationController
 	# before_action :authenticate_user!
 	def new
 		@product = Product.new
-		# @genre = Genre.find(params[:id])
 	end
 
 	def create
