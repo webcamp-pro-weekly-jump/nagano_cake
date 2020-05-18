@@ -2,7 +2,9 @@
 <!--ひと先ず登録されたジャンル名が表示されるように設定-->
  <h4>ジャンル検索</h4>
   <% @genres.each do |genre| %>
+   <%= link_to products_path(genre_id: genre.id) do %>
    <%= genre.name %>
+   <% end %>
   <% end %>
 
 </div>

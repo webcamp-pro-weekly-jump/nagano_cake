@@ -37,6 +37,7 @@ Rails.application.routes.draw do
   resources :members
   #退会処理のルーティング
   patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
+  get '/members/:id/quit' => 'members#quit', as: 'members_quit'
 
   resources :address, only:[:index, :update, :destroy, :create, :edit]
 
