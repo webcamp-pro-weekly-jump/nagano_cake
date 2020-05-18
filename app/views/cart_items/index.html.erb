@@ -34,7 +34,7 @@
 	 			</td>
 	 			<td>
 	 			    <%= form_for cart_item do |f| %>
-	 			    <%= f.number_field :quantity, min: 1 %>
+	 			    <%= f.number_field :quantity, min: 1 , size: 2 %>
 	 			    <%= f.submit '更新', class: 'btn btn-primary' %>
 	 			    <% end %>
 	 			</td>

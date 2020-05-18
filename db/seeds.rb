@@ -45,7 +45,7 @@ Product.create!(
 
 Product.create!(
 	genre_id: 3,
-	name: 'プリン',
+	name: 'クレームブリュレ',
 	price: '600',
 	introduction: '説明文',
 	is_sale: true)
@@ -53,6 +53,48 @@ Product.create!(
 Product.create!(
 	genre_id: 4,
 	name: 'キャンディ',
+	price: '500',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 1,
+	name: 'チョコレートケーキ',
+	price: '800',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 3,
+	name: 'ババロア',
+	price: '700',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 3,
+	name: 'マンゴープリン',
+	price: '500',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 1,
+	name: 'ザッハトルテ',
+	price: '1500',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 2,
+	name: 'ジンジャークッキー',
+	price: '200',
+	introduction: '説明文',
+	is_sale: true)
+
+Product.create!(
+	genre_id: 2,
+	name: 'バタークッキー',
 	price: '500',
 	introduction: '説明文',
 	is_sale: true)
