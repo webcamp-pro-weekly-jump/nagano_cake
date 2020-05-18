@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
 	before_action :authenticate_member!
-	
+
 	#会員詳細
 	def show
 		@member = Member.find(params[:id])
@@ -37,6 +37,6 @@ class MembersController < ApplicationController
 
 	private
 	def member_params
-		params.require(:member).permit(:is_valid, :family_name, :frist_name, :family_name_kana, :frist_name_kana, :tel, :email, :postal_code, :address)
+		params.require(:member).permit(:is_valid, :family_name, :first_name, :family_name_kana, :first_name_kana, :tel, :email, :postal_code, :address)
 	end
 end

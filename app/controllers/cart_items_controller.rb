@@ -20,7 +20,7 @@ class CartItemsController < ApplicationController
 		   redirect_to cart_items_path, alert: "その商品は登録済みです。数量を変更してください。"
 		else
 		   cart_item.save
-		   redirect_to cart_items_path #カートページにリダイレクト
+		   redirect_to cart_items_path, notice: "商品を追加しました" #カートページにリダイレクト
 	    end
 	end
 
