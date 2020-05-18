@@ -22,6 +22,9 @@ class MembersController < ApplicationController
 	end
 
 	#退会処理：論理削除
+	def quit
+		
+	end
 	def hide
 		@member = member.find(params[:id])
 		#フラグを立てる false(退会)にアップデート
@@ -29,6 +32,7 @@ class MembersController < ApplicationController
 		#会員ログアウトさせる
 		reset_session
 		#ログアウト後、ルートパスに飛ばす
+		flash[:notice] = "ありがとうございました。またのご利用をお待ちしております。"
 		redirect_to root_path
 	end
 

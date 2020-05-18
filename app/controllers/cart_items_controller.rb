@@ -14,8 +14,14 @@ class CartItemsController < ApplicationController
 	def create
 		cart_item = CartItem.new(cart_items_params)
 		cart_item.member_id = current_member.id
-		cart_item.save
-		redirect_to cart_items_path #カートページにリダイレクト
+		#同一商品を追加しようとした場合エラーが表示
+		product = CartItem.find_by(product_id: params[:cart_item][:product_id].to_i)
+		if product.present?
+		   redirect_to cart_items_path, alert: "その商品は登録済みです。数量を変更してください。"
+		else
+		   cart_item.save
+		   redirect_to cart_items_path #カートページにリダイレクト
+	    end
 	end
 
 	def update
