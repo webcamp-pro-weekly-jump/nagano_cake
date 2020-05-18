@@ -1,0 +1,21 @@
+
+
+<h1>配送先編集</h1>
+
+<%= form_for(@address) do |f| %>
+
+ <P>郵便番号（ハイフンなし）
+   <%= f.number_field :pastal_code %>
+ </P>
+
+ <p>住所
+   <%= f.text_field :address %>
+ </p>
+
+ <p>宛名
+   <%= f.text_field :name %>     
+ </p>
+ <div>
+   <%= f.submit "編集する" %>
+ </div>
+<% end %>

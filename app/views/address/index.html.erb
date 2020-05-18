@@ -1,0 +1,61 @@
+
+
+
+
+<h1>配送先登録/一覧</h1>
+<div>
+ <%= form_for(@address, url: address_index_path) do |f| %>
+
+  <P>郵便番号（ハイフンなし）
+    <%= f.number_field :pastal_code %>
+  </P>
+
+  <p>住所
+  	<%= f.text_field :address %>
+  </p>
+
+  <p>宛名
+  	<%= f.text_field :name %>     
+  </p>
+
+    <%= f.submit "登録" %>
+ 
+ <% end %>
+</div>
+
+<table>
+
+	<thead>
+		<tr>
+			<th>郵便番号</th>
+			<th>住所</th>
+			<th>宛名</th>
+			
+		</tr>
+	</thead>
+	<tbody>
+		
+		<% @addresses.each do |address| %>
+		<tr>
+		　　<th><%= address.pastal_code %></th>
+		　　<th><%= address.address %></th>
+		　　<th><%= address.name %></th>
+		　　<th>
+			   <%= link_to "編集する", edit_address_path(address.id) %>
+			   <%= link_to "削除する", address, method: :delete, data: { confirm: 'Are you sure?' } %>
+		
+		    </th>
+		 </tr>
+		<% end %>
+
+	
+	</tbody>
+</table>
+
+
+
+
+
+
+
+
