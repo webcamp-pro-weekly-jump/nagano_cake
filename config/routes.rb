@@ -38,8 +38,7 @@ Rails.application.routes.draw do
   resources :products, only:[:index, :show]
 
 
-   resources :members, only:[:show, :edit, :update]
-
+  resources :members, only:[:show, :edit, :update]
 
   #退会処理のルーティング
   put 'hide' => 'members#hide'
