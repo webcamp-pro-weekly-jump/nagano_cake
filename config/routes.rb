@@ -38,5 +38,7 @@ Rails.application.routes.draw do
   #退会処理のルーティング
   patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
 
+  resources :address, only:[:index, :update, :destroy, :create, :edit]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
