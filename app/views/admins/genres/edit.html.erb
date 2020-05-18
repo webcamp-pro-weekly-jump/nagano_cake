@@ -1,11 +1,31 @@
+<!-- ジャンル編集ページ -->
+
 <h2>ジャンル編集</h2>
 
-<%= form_for(@genre, url: edit_admins_genre_path) do |f| %>
-<h4>ジャンル</h4>
-	<%= f.text_field :name %>
-	<%= f.radio_button :is_valid, true %>
-	<%= f.label :is_valid, "有効" %>
-	<%= f.radio_button :is_valid, false %>
-	<%= f.label :is_valid, "無効" %>
-	<%= f.submit "変更を保存する" %>
-<% end %>
+<div class="col-xs-12">
+	<table>
+		<thead>
+			<tr>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= form_for(@genre, url: edit_admins_genre_path) do |f| %>
+			<tr>
+				<td>
+			　     <h4>ジャンル</h4>
+		        </td>
+		        <td>
+				   <%= f.text_field :name %>
+				   <%= f.radio_button :is_valid, true %>
+				   <%= f.label :is_valid, "有効" %>
+				   <%= f.radio_button :is_valid, false %>
+				   <%= f.label :is_valid, "無効" %>
+				   <%= f.submit "変更を保存する" %>
+				</td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
