@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
 
+
   namespace :admins do
   	root 'homes#top'
   	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
@@ -36,9 +37,15 @@ Rails.application.routes.draw do
 
   resources :products, only:[:index, :show]
 
-  resources :members
+
+   resources :members, only:[:show, :edit, :update]
+
+
   #退会処理のルーティング
-  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
+  put 'hide' => 'members#hide'
+  patch 'hide' => 'members#hide'
+  get 'quit' => 'members#quit'
+
 
   resources :address, only:[:index, :update, :destroy, :create, :edit]
 
