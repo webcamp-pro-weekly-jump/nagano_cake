@@ -1,6 +1,9 @@
-<!-- 商品一覧ページ -->
+<!--商品一覧ページ -->
 
 <h2>商品一覧</h2>
+
+<!-- 新規登録ボタンの設置 -->
+<%= button_to "+", new_admins_product_path, method: :get %>
 
 <div class="col-xs-12">
 	<table>
@@ -20,7 +23,7 @@
 				  <%= product.id %>
 				</td>
 				<td>
-				  <%= product.name %>
+				  <%= link_to product.name, admins_product_path(product.id) %>
 			    </td>
 			    <td>
 				  <%= product.price %>
@@ -41,3 +44,5 @@
 		</tbody>
 	</table>
 </div>
+
+<!-- ページネーションまだです
