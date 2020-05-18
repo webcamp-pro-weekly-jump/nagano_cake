@@ -1,7 +1,7 @@
 <h2>商品編集</h2>
 
 
-<%= form_for(@product, url: edit_admin_product_path(@product.id)) do |f| %>
+<%= form_for(@product, url: edit_admins_product_path(@product.id)) do |f| %>
     <h4>商品画像</h4>
     <%= f.attachment_field :image %>
 

@@ -1,6 +1,6 @@
 <div>
 	<p>マイページ</p>
-	 登録情報 <%= link_to '編集する', class: "btn btn-primary" %> <%= link_to 'パスワードを変更する', class: "btn btn-primary" %>
+	 登録情報 <%= link_to '編集する',edit_member_path(@member), class: "btn btn-primary" %> <%= link_to 'パスワードを変更する', class: "btn btn-primary" %>
 
 	  <table class="table-bordered">
 	  	<tr>
@@ -9,7 +9,7 @@
 		</tr>
 	  	<tr>
 			<td>カナ</td>
-			<td><%= @member.family_name_was %><%= @member.first_name_was %></td>
+			<td><%= @member.family_name_kana %><%= @member.first_name_kana %></td>
 		</tr>
 	  	<tr>
 			<td>郵便番号</td>

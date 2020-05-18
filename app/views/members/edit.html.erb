@@ -1,0 +1,52 @@
+<div>
+
+	<h1>登録情報編集</h1>
+
+	 <div class="form-body">
+      <%= form_for(@member) do |f| %>
+	   <div class="col-sm-4">名前</div>
+	    <div class="field col-sm-8">
+        <label>(性)</label>
+        <%= f.text_field :family_name %>
+        <label>(名)</label>
+        <%= f.text_field :first_name %>
+        </div>
+
+	   <div class="col-sm-4">フリガナ</div>
+	    <div class="field col-sm-8">
+        <label>(セイ)</label>
+        <%= f.text_field :family_name_kana %>
+        <label>(メイ)</label>
+        <%= f.text_field :first_name_kana %>
+        </div>
+
+	   <div class="col-sm-4">メールアドレス</div>
+	    <div class="field col-sm-8">
+        <%= f.text_field :email %>
+        </div>
+
+	   <div class="col-sm-4">郵便番号(ハイフンなし)</div>
+	    <div class="field col-sm-8">
+        <%= f.text_field :postal_code %>
+        </div>
+
+	   <div class="col-sm-4">住所</div>
+	    <div class="field col-sm-8">
+        <%= f.text_field :address %>
+        </div>
+
+	   <div class="col-sm-4">電話番号(ハイフンなし)</div>
+	    <div class="field col-sm-8">
+        <%= f.text_field :tel %>
+        </div>
+
+       <div class="actions">
+        <%= f.submit "編集内容を保存する", class: "btn btn-primary" %>
+       </div>
+
+       <div>
+        <%= link_to "退会する", members_hide_path(current_member), method: :patch, "data-confirm" => "本当に退会しますか？", class: "btn btn-danger" %>
+       </div>
+
+	  <% end %>
+</div>

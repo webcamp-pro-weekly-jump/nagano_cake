@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+
   devise_for :admins, controllers: {
   sessions:      'admins/sessions',
   passwords:     'admins/passwords',
@@ -7,12 +7,14 @@ Rails.application.routes.draw do
 }
 
   namespace :admins do
-  	resources :products, only:[:new, :index, :show, :edit, :create, :update]
-  	resources :genres, only:[:new, :create, :index, :edit, :update]
+  	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
+  	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
+    resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
   end
-  patch '/admins/genres/:id/edit' => 'admin/genres#update' #ルーティングエラー発生のため追記
-  post '/admins/products/new' => 'admin/products#create' #ルーティングエラー発生のため追記
-  patch '/admins/products/:id/edit' => 'admin/products#update' #同上
+  patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
+  post '/admins/products/new' => 'admins/products#create' #ルーティングエラー発生のため追記
+  patch '/admins/products/:id/edit' => 'admins/products#update' #同上
+  patch '/admins/members/:id/edit' => 'admins/members#update' #同上
 
 
   #会員側の処理
@@ -23,12 +25,18 @@ Rails.application.routes.draw do
 }
   root 'homes#top'
 
+  resources :orders, only: [:new, :index, :create, :show]
+  post 'orders/show_order' => 'orders#show_order', as: 'order_show_order'
+  get 'orders/success' => 'orders#success', as: 'order_success'
+
   resources :cart_items, only:[:index, :update, :destroy, :create]
-  delete 'cart_item/:id/empty', to: 'cart_item#destroy_all'
+  delete 'cart_item/empty', to: 'cart_items#destroy_all', as: 'empty_path'
 
   resources :products, only:[:index, :show]
 
-  resources :members, only:[:show]
+  resources :members
+  #退会処理のルーティング
+  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
 
   resources :address, only:[:index, :update, :destroy, :create, :edit]
 

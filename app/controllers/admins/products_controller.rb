@@ -7,7 +7,7 @@ class Admins::ProductsController < ApplicationController
 	def create
 		@product = Product.new(product_params)
 		@product.save!
-		redirect_to '/admin/products'
+		redirect_to '/admins/products'
 	end
 
 	def index
@@ -25,7 +25,7 @@ class Admins::ProductsController < ApplicationController
 	def update
 		@product = Product.find(params[:id])
 		@product.update(product_params)
-		redirect_to '/admin/products'
+		redirect_to '/admins/products'
 	end
 
     private
