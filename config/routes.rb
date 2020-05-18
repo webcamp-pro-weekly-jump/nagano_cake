@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
 
+
   namespace :admins do
   	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
   	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
