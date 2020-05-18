@@ -20,7 +20,7 @@
           </td>
 
           <td>
-            <%= member.family_name %><%= member.first_name %>
+            <%= link_to member.family_name + member.first_name, admins_member_path(member.id)%>
           </td>
 
           <td>

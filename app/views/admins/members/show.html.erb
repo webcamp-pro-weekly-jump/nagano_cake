@@ -12,10 +12,10 @@
 	  <% end %>
 
 <h4>氏名</h4>
-<%= @member.family_name %><%= @member.first_name %>
+<%= @member.family_name + @member.first_name %>
 
 <h4>フリガナ</h4>
-<%= @member.family_name_kana %><%= @member.first_name_kana %>
+<%= @member.family_name_kana + @member.first_name_kana %>
 
 <h4>郵便番号</h4>
 <%= @member.postal_code %>
