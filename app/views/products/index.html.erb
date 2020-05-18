@@ -18,6 +18,6 @@
       <% end %>
       <%= product.name %>
       <% tax_price = product.price * 1.08 %>
-      ¥<%= tax_price.to_s(:delimited) %>
+      <%= number_to_currency(tax_price, :unit => "¥", :precision => 0) %>
     <% end %>
 </div>

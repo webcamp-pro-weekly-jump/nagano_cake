@@ -3,6 +3,8 @@
 	　<%= button_to 'カートを空にする', empty_path_url, method: :delete, class: "btn btn-danger" %>
 
 	<%= alert %>
+	<%= notice %>
+
 
 	<!--カートの中身-->
 	 <table class="table-bordered">
@@ -28,18 +30,18 @@
 	 			<td>
 	 				<!--税込み価格の算出--->
 	 				<% tax_price = cart_item.product.price * 1.08 %>
-	 				<%= tax_price.to_s(:delimited) %>
+	 				<%= number_to_currency(tax_price, :unit => "", :precision => 0) %>
 	 			</td>
 	 			<td>
 	 			    <%= form_for cart_item do |f| %>
-	 			    <%= f.number_field :quantity %>
+	 			    <%= f.number_field :quantity, min: 1 %>
 	 			    <%= f.submit '更新', class: 'btn btn-primary' %>
 	 			    <% end %>
 	 			</td>
 	 			<td>
 	 				<!--単価×数量--->
 	 				<% sub_total = tax_price * cart_item.quantity %>
-	 				<%= sub_total.to_s(:delimited) %>
+	 				<%= number_to_currency(sub_total, :unit =>"", :precision => 0) %>
 	 			</td>
 	 			<td>
 	 				<!--商品一つずつ削除--->
@@ -58,7 +60,7 @@
 	<table class="table-bordered">
 		<tr>
 			<td>合計金額</td>
-			<td><%= sum.to_s(:delimited) %></td>
+			<td><%= number_to_currency(sum, :unit => "", :precision => 0) %></td>
 		</tr>
 	</table>
 
