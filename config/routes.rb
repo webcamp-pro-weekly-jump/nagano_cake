@@ -34,10 +34,15 @@ Rails.application.routes.draw do
 
   resources :products, only:[:index, :show]
 
-  resources :members
+
+   resources :members, only:[:show, :edit, :update]
+
+
   #退会処理のルーティング
-  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
-  get '/members/:id/quit' => 'members#quit', as: 'members_quit'
+  put 'hide' => 'members#hide'
+  patch 'hide' => 'members#hide'
+  get 'quit' => 'members#quit'
+
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
