@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
   	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
     resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
+    resources :orders, only:[:index, :show, :update] #注文履歴一覧作成の為
 
   end
   patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
