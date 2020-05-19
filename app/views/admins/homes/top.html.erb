@@ -3,4 +3,4 @@
 
 
 
-<p>本日の注文件数</p>   予約件数カウント   件
+<p>本日の注文件数</p>   予約件数カウント<%= @order.where(created_at: Time.zone.today).count %>件
