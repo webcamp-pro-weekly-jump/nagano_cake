@@ -4,11 +4,13 @@ class Member < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+ #リレーション
   has_many :cart_items, dependent: :destroy
   has_many :orders
   has_many :addresses # 追加しました
   belongs_to :admins, optional: true
 
+  #バリデーション設定
   validates :email, presence: true
   validates :family_name, presence: true
   validates :first_name, presence: true
