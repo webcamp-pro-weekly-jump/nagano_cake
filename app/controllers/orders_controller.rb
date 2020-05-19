@@ -21,11 +21,11 @@ class OrdersController < ApplicationController
 			@order.member_id = current_member.id
 
 			# 住所のラジオボタン選択の引数に応じて分岐
-			@flag = params[:order][:flag]
+			@flag = params[:flag]
 			if @flag.to_i == 0 then
 				@order.postal_code = @member.postal_code
 				@order.address = @member.address
-				@order.name = @member.family_name + @member.first_name
+				@order.name = @member.family_name + " " + @member.first_name
 			elsif @flag.to_i == 1 then
 				@order.postal_code = params[:order][:postal_code]
 				@order.address = params[:order][:address]
@@ -41,10 +41,11 @@ class OrdersController < ApplicationController
 			# 新しいお届け先の入力内容に一致するものがなければ、登録する
 			 if Address.find_by(address: @order.address).nil?
 				@address = Address.new
-				@address.pastal_code = @order.postal_code
+				@address.pastal_code = params[:order][:postal_code]
 				@address.address = @order.address
 				@address.member_id = current_member.id
-				@address.save
+				@address.name = @order.name
+				@address.save!
 			end
 
 			# cart_itemsの内容をorder_itemsに新規登録
@@ -74,15 +75,15 @@ class OrdersController < ApplicationController
 		if @flag.to_i == 0 then
 			@order.postal_code = @member.postal_code
 			@order.address = @member.address
-			@order.name = @member.family_name + @member.first_name
+			@order.name = @member.family_name + " " + @member.first_name
 		elsif @flag.to_i == 1 then
 			@set_address = params[:order][:address].to_i
 			@send_to_address = Address.find(@set_address)
-			@order.postal_code = @send_to_address.postal_code
+			@order.postal_code = @send_to_address.pastal_code
 			@order.address = @send_to_address.address
 			@order.name = @send_to_address.name
 		elsif @flag.to_i == 2 then
-			@order.postal_code = params[:order][:add_address][:post_code]
+			@order_postal_code = params[:order][:add_address][:postal_code]
 			@order.address = params[:order][:add_address][:address]
 			@order.name = params[:order][:add_address][:name]
 		end
