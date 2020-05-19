@@ -1,20 +1,42 @@
+<!-- 会員一覧ページ -->
+
 <h2>会員一覧</h2>
 
-<% @members.each do |member| %>
-  <h4>会員ID</h4>
-  <%= member.id %>
+<div class="col-xs-12">
+  <table>
+    <thead>
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+        <% @members.each do |member| %>
+        <tr>
+          <td>
+            <%= member.id %>
+          </td>
 
-  <h4>氏名</h4>
-  <%= member.family_name %><%= member.first_name %>
+          <td>
+            <%= link_to member.family_name + member.first_name, admins_member_path(member.id)%>
+          </td>
 
-  <h4>メールアドレス</h4>
-  <%= member.email %>
+          <td>
+            <%= member.email %>
+          </td>
 
-  <h4>ステータス</h4>
-	  <% if member.is_valid == true %>
-	    <%= "有効" %>
-	  <% else %>
-	    <%= "退会済" %>
-	  <% end %>
-
-<% end %>
+          <td>
+        	  <% if member.is_valid == true %>
+        	    <%= "有効" %>
+        	  <% else %>
+        	    <%= "退会済" %>
+        	  <% end %>
+          </td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>
+  <%= paginate @members %>
+</div>

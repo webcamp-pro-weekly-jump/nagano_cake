@@ -1,5 +1,6 @@
 class Admins::ProductsController < ApplicationController
-	# before_action :authenticate_user!
+	before_action :authenticate_admin!
+
 	def new
 		@product = Product.new
 	end
@@ -11,7 +12,8 @@ class Admins::ProductsController < ApplicationController
 	end
 
 	def index
-		@products = Product.all
+		@products = Product.all.page(params[:page]).per(10)
+		# 1ページに10のレコードを取り出す処理
 	end
 
 	def show

@@ -1,21 +1,41 @@
 <div class="col-xs-3">
-<!--ひと先ず登録されたジャンル名が表示されるように設定-->
- <h4>ジャンル検索</h4>
-  <% @genres.each do |genre| %>
-   <%= genre.name %>
-  <% end %>
-
+<!--ジャンル一覧の表示→各ジャンルへ移動-->
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+     <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+       <%= link_to '全ての商品', products_path %>
+      </td>
+      <% @genres.each do |genre| %>
+       <td>
+        <%= link_to products_path(genre_id: genre.id) do %>
+        <%= genre.name %>
+        <% end %>
+       </td>
+      <% end %>
+    </tr>
+  </tbody>
+ </table>
 </div>
 
-<!--商品一覧：ページネーションはまだ未設定-->
+
+<!--商品一覧-->
 <div class="col-xs-9">
-	<h1>商品一覧</h1>
+	<h1><%= @title %>一覧</h1>
+  <p>(全<%= @counts %>件)</p><br>
      <% @products.each do |product| %>
       <%= link_to product_path(product.id) do %>
       <%= attachment_image_tag product, :image, :fill, 40, 40, format: 'jpeg', class: "img-rounded",fallback: "no_image.jpg",size:"50x50" %>
       <% end %>
       <%= product.name %>
       <% tax_price = product.price * 1.08 %>
-      ¥<%= tax_price.to_s(:delimited) %>
+      <%= number_to_currency(tax_price, :unit => "¥", :precision => 0) %>
     <% end %>
+
+     <%= paginate @products %>
 </div>

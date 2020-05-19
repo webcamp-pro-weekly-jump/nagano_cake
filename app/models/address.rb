@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
 # 追加しました
-	belongs_to :customer
+	belongs_to :member
 
 	# orders/newで登録済住所を表示するメソッド
     def select_address

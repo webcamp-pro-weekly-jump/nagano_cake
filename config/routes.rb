@@ -6,10 +6,14 @@ Rails.application.routes.draw do
   registrations: 'admins/registrations'
 }
 
+
   namespace :admins do
+  	root 'homes#top'
   	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
   	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
     resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
+    resources :orders, only:[:index, :show, :update] #注文履歴一覧作成の為
+
   end
   patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
   post '/admins/products/new' => 'admins/products#create' #ルーティングエラー発生のため追記
@@ -34,9 +38,16 @@ Rails.application.routes.draw do
 
   resources :products, only:[:index, :show]
 
-  resources :members
+
+  resources :members, only:[:show, :edit, :update]
+
   #退会処理のルーティング
-  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
+  put 'hide' => 'members#hide'
+  patch 'hide' => 'members#hide'
+  get 'quit' => 'members#quit'
+
+
+  resources :address, only:[:index, :update, :destroy, :create, :edit]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

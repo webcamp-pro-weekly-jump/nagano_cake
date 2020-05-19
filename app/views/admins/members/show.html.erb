@@ -1,4 +1,7 @@
-<%= @member.family_name %><%= @member.first_name %><h2>さんの会員詳細</h2>
+<!-- 会員情報詳細ページ -->
+
+<h2><%= @member.family_name + @member.first_name %>さんの会員詳細</h2>
+
 
 <h4>顧客ID</h4>
 <%= @member.id %>
@@ -9,10 +12,10 @@
 	  <% end %>
 
 <h4>氏名</h4>
-<%= @member.family_name %><%= @member.first_name %>
+<%= @member.family_name + @member.first_name %>
 
 <h4>フリガナ</h4>
-<%= @member.family_name_kana %><%= @member.first_name_kana %>
+<%= @member.family_name_kana + @member.first_name_kana %>
 
 <h4>郵便番号</h4>
 <%= @member.postal_code %>
@@ -26,5 +29,6 @@
 <h4>メールアドレス</h4>
 <%= @member.email %>
 
-<%#= link_to "編集する", edit_admins_member_path %>
-<%#= link_to "注文履歴一覧" %>
+<%= link_to "編集する", edit_admins_member_path %>
+<%= link_to "注文履歴一覧", admins_orders_path %>
+<!-- 注文履歴一覧へのパス -->
