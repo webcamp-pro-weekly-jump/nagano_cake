@@ -17,7 +17,7 @@
 				<% @orders.each do |order| %>
 					<tr>
 						<td>
-							<%= simple_time(order.created_at) %>
+							<%= order.created_at.strftime('%Y/%m/%d') %>
 						</td>
 
 						<td>
@@ -28,8 +28,7 @@
 							<% sum = 0 %>
 							<% order.order_items.each do |order_item| %>
 				  				<%= order_item.product.name %><br>
-				  				<% zeikomi = order_item.price * 1.08 %>
-				  				<% syoukei = zeikomi * order_item.quantity %>
+				  				<% syoukei = order_item.tax_price * order_item.quantity %>
 								<% sum = sum + syoukei %>
 							<% end %>
 						</td>

@@ -1,7 +1,10 @@
 class Product < ApplicationRecord
 	belongs_to :genres, optional: true
 	attachment :image
-
 	has_many :cart_items, dependent: :destroy
+
+	has_many :customers, through: :cart_items
+	has_many :order_items
+	has_many :products, through: :order_items
 
 end
