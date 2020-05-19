@@ -1,0 +1,12 @@
+<!-- 注文ステータスの表示 -->
+<% if order.order_status == 0 %>
+	<p>入金待ち</p>
+<% elsif order.order_status == 1 %>
+	<p>入金確認</p>
+<% elsif order.order_status == 2 %>
+	<p>製作中</p>
+<% elsif order.order_status == 3 %>
+	<p>発送準備中</p>
+<% elsif order.order_status == 4 %>
+	<p>発送済み</p>
+<% end %>

@@ -1,5 +1,16 @@
 <div>
 
+    <% if @member.errors.any? %>
+     <div id="error_explanation">
+      <h2><%= @member.errors.count %>errors prohibited this obj from being saved:</h2>
+       <ul>
+        <% @member.errors.full_messages.each do |message| %>
+         <li><%= message %></li>
+        <% end %>
+       </ul>
+     </div>
+    <% end %>
+
 	<h1>登録情報編集</h1>
 
 	 <div class="form-body">

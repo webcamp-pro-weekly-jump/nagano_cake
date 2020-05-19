@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-	belongs_to :members
+	belongs_to :member
 	# 注文を削除すると注文に関連つけられたorder_itemもすべて削除される。
 	has_many :order_items, dependent: :destroy
 

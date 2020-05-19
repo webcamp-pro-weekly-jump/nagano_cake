@@ -28,7 +28,7 @@ devise_for :members, controllers: {
   root 'homes#top'
 
   resources :orders, only: [:new, :index, :create, :show]
-  post 'orders/show_order' => 'orders#show_order', as: 'order_show_order'
+  post 'orders/order_show' => 'orders#order_show', as: 'order_order_show'
   get 'orders/success' => 'orders#success', as: 'order_success'
 
   resources :cart_items, only:[:index, :update, :destroy, :create]

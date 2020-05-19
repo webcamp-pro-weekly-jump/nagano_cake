@@ -4,7 +4,7 @@
 
 
 <h4>顧客ID</h4>
-<%= @member.id %>
+      <%= @member.id %>
 	  <% if @member.is_valid == true %>
 	    <%= "有効会員" %>
 	  <% else %>
@@ -30,4 +30,5 @@
 <%= @member.email %>
 
 <%= link_to "編集する", edit_admins_member_path %>
-<%= link_to "注文履歴一覧" %>
+<%= link_to "注文履歴一覧", admins_orders_path %>
+<!-- 注文履歴一覧へのパス -->

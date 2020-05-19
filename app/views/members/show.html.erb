@@ -1,6 +1,6 @@
 <div>
-	<p>マイページ</p>
-	 登録情報 <%= link_to '編集する',edit_member_path(@member), class: "btn btn-primary" %> <%= link_to 'パスワードを変更する',edit_member_registration_path(@member), class: "btn btn-primary" %>
+	<h4>マイページ</h4>
+	 <p>登録情報</p> <%= link_to '編集する',edit_member_path(@member), class: "btn btn-primary" %> <%= link_to 'パスワードを変更する',edit_member_registration_path(@member), class: "btn btn-primary" %>
 
 	  <table class="table-bordered">
 	  	<tr>
@@ -19,13 +19,17 @@
 			<td>住所</td>
 			<td><%= @member.address %></td>
 		</tr>
+		<tr>
+			<td>電話番号</td>
+			<td><%= @member.tel %></td>
+		</tr>
 	  	<tr>
 			<td>メールアドレス</td>
 			<td><%= @member.email %></td>
 		</tr>
 	  </table>
 
-	  配送先 <%= link_to '一覧を見る', class: "btn btn-primary" %>
+	  配送先 <%= link_to '一覧を見る', address_index_path,class: "btn btn-primary" %>
 
-	  注文履歴 <%= link_to '一覧を見る', class: "btn btn-primary" %>
+	  注文履歴 <%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
 </div>
