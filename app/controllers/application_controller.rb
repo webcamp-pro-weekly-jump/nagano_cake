@@ -9,8 +9,12 @@ class ApplicationController < ActionController::Base
       end
   	end
   	def after_sign_out_path_for(resource)
-      
+      if member_signed_in?
   		   root_path(resource)
+      else
+        admin_signed_in?
+        new_admin_session_path
+      end
      
   	  
     end
