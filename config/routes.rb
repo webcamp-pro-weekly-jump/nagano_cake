@@ -5,14 +5,16 @@ Rails.application.routes.draw do
   passwords:     'admins/passwords',
   registrations: 'admins/registrations'
 }
-
-
+devise_for :members, controllers: {
+  sessions:      'members/sessions',
+  passwords:     'members/passwords',
+  registrations: 'members/registrations'
+}
   namespace :admins do
   	root 'homes#top'
   	resources :products, only:[:new, :index, :show, :edit, :create, :update] #商品ページ作成の為
   	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
     resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
-    resources :orders, only:[:index, :show, :update] #注文履歴一覧作成の為
 
   end
   patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
@@ -22,11 +24,7 @@ Rails.application.routes.draw do
 
 
   #会員側の処理
-  devise_for :members, controllers: {
-  sessions:      'members/sessions',
-  passwords:     'members/passwords',
-  registrations: 'members/registrations'
-}
+  
   root 'homes#top'
 
   resources :orders, only: [:new, :index, :create, :show]
@@ -38,14 +36,9 @@ Rails.application.routes.draw do
 
   resources :products, only:[:index, :show]
 
-
-  resources :members, only:[:show, :edit, :update]
-
+  resources :members
   #退会処理のルーティング
-  put 'hide' => 'members#hide'
-  patch 'hide' => 'members#hide'
-  get 'quit' => 'members#quit'
-
+  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
 
   resources :address, only:[:index, :update, :destroy, :create, :edit]
 

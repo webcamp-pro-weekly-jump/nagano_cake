@@ -3,7 +3,10 @@
 class Members::SessionsController < Devise::SessionsController
   before_action :reject_member, only: [:create]
   # before_action :configure_sign_in_params, only: [:create]
-
+    def after_sign_out_path_for(resource)
+       root_path(resource)
+    end
+  
   # GET /resource/sign_in
   # def new
   #   super
@@ -34,7 +37,7 @@ class Members::SessionsController < Devise::SessionsController
     if @member
       if (@member.valid_password?(params[:member][:password]) && (@member.active_for_authentication? == false))
         flash[:error] = "退会済みです。"
-        redirect_to new_user_session_path
+        redirect_to new_member_session_path
       end
     else
       flash[:error] = "必須項目を入力してください。"
