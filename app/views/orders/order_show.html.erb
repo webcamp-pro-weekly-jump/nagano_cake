@@ -1,27 +1,26 @@
 <div class = "container confirm">
 	<h2>注文情報確認<h2>
 
-	<!-- form_for -->
+	<%= form_with(model: @order, local: true) do |form| %>
     	<div class = "col col-xs-8">
-    		<table>
+    		<table border = "1" width = "700" height = "100">
 	    		<thead>
 		  			<tr>
-				 		<th>商品名</th>
-						<th>単価（税込）</th>
-						<th>数量</th>
-						<th>小計</th>
+						<th width="55%" height="50" bgcolor="#EEEEEE">商品名</th>
+						<th width="25%" bgcolor="#EEEEEE">単価（税込）</th>
+						<th width="25%" bgcolor="#EEEEEE">数量</th>
+						<th width="25%" bgcolor="#EEEEEE">小計</th>
 					</tr>
 				</thead>
 
 				<tbody>
-					<% sum = 0 %><!-- 合計金額の計算に使用する -->
+					<% sum = 0 %>
 					<% @cart_items.each do |cart_item| %>
 						<tr>
 							<!-- 商品名（+商品画像）の表示 -->
 							<td>
 								<%= attachment_image_tag(cart_item.product,
-								:image, :size => "50x50", fallback: "") %>
-								<!-- ↑画像を正しく読み込めなかった場合に表示する画像を用意する -->
+								:image, :size => "60x60", fallback: "no_image.jpg") %>
 								<%= cart_item.product.name %>
 							</td>
 							<!-- ---------------------- -->
@@ -53,15 +52,18 @@
 		</div>
 
 		<div class = "col col-xs-4">
-			<table>
+	    	<table border="1" width="700" height="100">
 				<tbody>
 					<tr>
-						<td>送料</td>
+			  			<td width = "25%" bgcolor="#EEEEEE">送料</td>
 						<td><%= @order.postage %>円</td>
-						<td>商品合計</td>
+			  			<td width = "30%" bgcolor="#EEEEEE">商品合計</td>
 						<td><%= sum %>円</td>
-						<td>請求金額</td>
-						<td><%= sum + @order.postage %>円</td>
+			  			<td width = "30%" bgcolor="#EEEEEE">請求金額</td>
+						<td>
+							<% @order.all_price = sum + @order.postage %>
+							<%= @order.all_price %>円
+						</td>
 					</tr>
 				</tbody>
 			</table>
@@ -71,12 +73,23 @@
 			<div class = "row">
 				<div class = "col col-xs-8">
 					<h3>支払い方法</h3>
+						<%= render 'orders/pay_method', order: @order %>
+					<h3>お届け先</h3>
+					<%= @order.postal_code %>
+					<%= @order.address %>
+					<%= @order.name %>
+
+					<%= form.hidden_field :member_id, :value => current_member.id %>
+					<%= form.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
+					<%= form.hidden_field :address, :value => "#{@order.address}" %>
+					<%= form.hidden_field :name, :value => "#{@order.name}" %>
+					<%= form.hidden_field :all_price, :value => "#{@order.all_price}" %>
 				</div>
 			</div>
 		</div>
 
-	<div style="text-align: center">
-	  <%= form.submit "購入を確定する", class: "btn btn-success btn-lg col-xs-3" %>
-	</div>
-  <% end %>
+		<div style="text-align: center">
+	  		<%= form.submit "購入を確定する", class: "btn btn-success btn-lg col-xs-3" %>
+		</div>
+  	<% end %>
 </div>

@@ -1,17 +1,17 @@
 <div>
 	<h2>注文情報入力</h2>
 
-	<%= form_with(model: @order, local: true, url:{action: 'show_order'}) do |F| %>
+	<%= form_with(model: @order, local: true, url:{action: 'order_show'}) do |form| %>
 	<!-- 支払い方法の選択 -->
 		<div>
 			<h3>支払い方法</h3>
 			<!-- ラジオボタンでクレジットカードか銀行振込のいずれかを選択 -->
 			<p>
-				<label><%= F.radio_button :pay_method, "0" %>クレジットカード</label><br>
+				<label><%= form.radio_button :pay_method, "0" %>クレジットカード</label><br>
 			</p>
 
 			<p>
-				<label><%= F.radio_button :pay_method, "1" %>銀行振込</label><br>
+				<label><%= form.radio_button :pay_method, "1" %>銀行振込</label><br>
 			</p>
 		</div>
 	<!-- -------------- -->
@@ -19,11 +19,13 @@
 		<!-- 配送先の選択/記入 -->
 		<div>
 			<h3>お届け先</h3>
-			<!-- ボタン(?)で自分の住所/登録済み住所/新規登録のいずれかを選択 -->
+			<!-- ラジオボタンで自分の住所/登録済み住所/新規登録のいずれかを選択 -->
 			<div>
 				<p>
-					<label>ご自身の住所</label><br>
-					<%= @member.postal_code %>
+					<label>
+						<%= form.radio_button :flag, 0, checked: true %>ご自身の住所
+					</label><br>
+					<%= @member.postal_code %><br>
 					<%= @member.address %>
 					<%= @member.family_name + @member.first_name %>
 				</p>
@@ -31,15 +33,16 @@
 
 			<div>
 				<p>
-					<label>登録済み住所から選択</label><br>
-					<!-- セレクトボックスで表示/選択 -->
+					<label><%= form.radio_button :flag, 1 %>登録済み住所から選択</label><br>
+					<!-- セレクトボックスで登録済み住所を選択 -->
+   					<!-- < form.collection_select :address, @member.addresses, :id, :name, include_blank: "--選択して下さい--" %> -->
 				</p>
 			</div>
 
 			<div>
-				<%= form_for(@address) do |f| %>
+				<%= form.fields_for :add_address do |f| %>
 					<p>
-						<label>新しいお届け先</label><br>
+						<label><%= form.radio_button :flag, 2 %>新しいお届け先</label><br>
 						<table>
 							<tr>
 								<th>郵便番号（ハイフンなし）</th>
@@ -48,7 +51,7 @@
 
 							<tr>
 								<th>お届け先住所</th>
-								<td><%= f.text_field :address %></td>
+								<td><%= f.text_field :address, size: 50 %></td>
 							</tr>
 
 							<tr>

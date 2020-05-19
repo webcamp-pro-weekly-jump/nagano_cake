@@ -1,0 +1,6 @@
+<!-- 支払い方法の表示 -->
+<% if order.pay_method == 0 %>
+	<P>クレジットカード</P>
+<% else order.pay_method == 1 %>
+	<P>銀行振込</P>
+<% end %>

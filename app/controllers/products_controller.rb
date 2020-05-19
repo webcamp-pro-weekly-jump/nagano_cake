@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
 	    end
 	end
 
-　　#商品詳細→カートに入れる
+	#商品詳細→カートに入れる
 	def show
 		@product = Product.find(params[:id])
 		@cart_item = CartItem.new
