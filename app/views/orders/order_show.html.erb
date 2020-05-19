@@ -75,15 +75,18 @@
 					<h3>支払い方法</h3>
 						<%= render 'orders/pay_method', order: @order %>
 					<h3>お届け先</h3>
-					<%= @order.postal_code %>
-					<%= @order.address %>
+					<%= @order_postal_code %><br>
+					<%= @order.address + " " %>
 					<%= @order.name %>
 
 					<%= form.hidden_field :member_id, :value => current_member.id %>
-					<%= form.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
+					<%= form.hidden_field :postal_code, :value => "#{@order_postal_code}" %>
 					<%= form.hidden_field :address, :value => "#{@order.address}" %>
 					<%= form.hidden_field :name, :value => "#{@order.name}" %>
 					<%= form.hidden_field :all_price, :value => "#{@order.all_price}" %>
+
+					<%= form.hidden_field :pay_method, :value => "#{@order.pay_method}"  %>
+					<%= hidden_field_tag :flag, @flag %>
 				</div>
 			</div>
 		</div>
