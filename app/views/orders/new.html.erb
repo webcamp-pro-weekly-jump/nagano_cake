@@ -33,16 +33,16 @@
 
 			<div>
 				<p>
-					<label><%= form.radio_button :flag, 1 %>登録済み住所から選択</label><br>
+					<label><%= form.radio_button :flag, 1,style: "display: inline-block" %>登録済み住所から選択</label><br>
 					<!-- セレクトボックスで登録済み住所を選択できるようにしたい -->
-   					<%= form.collection_select :address, @member.addresses, :id, :select_address, include_blank: "--選択して下さい--" %>
+   					<%= form.collection_select :address, @member.addresses, :id, :name, include_blank: "---- 選択して下さい ----" %>
 				</p>
 			</div>
 
 			<div>
 				<%= form.fields_for :add_address do |f| %>
 					<p>
-						<label><%= form.radio_button :flag, 2 %>新しいお届け先</label><br>
+						<label><%= form.radio_button :flag, 2, style: "display: inline-block" %>新しいお届け先</label><br>
 						<table>
 							<tr>
 								<th>郵便番号（ハイフンなし）</th>
