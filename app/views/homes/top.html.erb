@@ -1,12 +1,24 @@
-<div>
-	
- <h3>ジャンル検索</h3>
- <p>ケーキ</p><br>
- <p>焼き菓子</p><br>
- <p>プリン</p><br>
- <p>キャンディ</p>
-
-
+<div class="col-xs-3">
+<!--ジャンル一覧の表示→各ジャンルへ移動-->
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+     <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     
+      <% @genres.each do |genre| %>
+       <td>
+        <%= link_to products_path(genre_id: genre.id) do %>
+        <%= genre.name %>
+        <% end %>
+       </td>
+      <% end %>
+    </tr>
+  </tbody>
+ </table>
 </div>
 
 <div>
