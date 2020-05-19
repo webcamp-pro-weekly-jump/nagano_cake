@@ -38,9 +38,10 @@ class OrdersController < ApplicationController
 
 			@order.save
 
-			if Address.find_by(address: @order.address).nil?
+			# 新しいお届け先の入力内容に一致するものがなければ、登録する
+			 if Address.find_by(address: @order.address).nil?
 				@address = Address.new
-				@address.postal_code = @order.postal_code
+				@address.pastal_code = @order.postal_code
 				@address.address = @order.address
 				@address.member_id = current_member.id
 				@address.save
@@ -58,9 +59,9 @@ class OrdersController < ApplicationController
 		  		# cart_itemのデータを削除
 		  		cart_item.destroy
 			end
-			render :success
+			render action: :success # 注文完了ページに遷移させたい
 		else
-			redirect_to product_path
+			redirect_to products_path
 		end
 	end
 

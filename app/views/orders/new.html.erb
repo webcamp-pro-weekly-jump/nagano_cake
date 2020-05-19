@@ -7,11 +7,11 @@
 			<h3>支払い方法</h3>
 			<!-- ラジオボタンでクレジットカードか銀行振込のいずれかを選択 -->
 			<p>
-				<label><%= form.radio_button :pay_method, "0" %>クレジットカード</label><br>
+				<label><%= form.radio_button :pay_method, 0 %>クレジットカード</label><br>
 			</p>
 
 			<p>
-				<label><%= form.radio_button :pay_method, "1" %>銀行振込</label><br>
+				<label><%= form.radio_button :pay_method, 1 %>銀行振込</label><br>
 			</p>
 		</div>
 	<!-- -------------- -->
@@ -34,8 +34,8 @@
 			<div>
 				<p>
 					<label><%= form.radio_button :flag, 1 %>登録済み住所から選択</label><br>
-					<!-- セレクトボックスで登録済み住所を選択 -->
-   					<!-- < form.collection_select :address, @member.addresses, :id, :name, include_blank: "--選択して下さい--" %> -->
+					<!-- セレクトボックスで登録済み住所を選択できるようにしたい -->
+   					<%= form.collection_select :address, @member.addresses, :id, :select_address, include_blank: "--選択して下さい--" %>
 				</p>
 			</div>
 
