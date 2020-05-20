@@ -24,6 +24,7 @@
 </div>
 
 <div class="col-xs-9">
+
       <%= attachment_image_tag @product, :image, :fill, 40, 40, format: 'jpeg', class: "img-rounded pull-left",fallback: "no_image.jpg",size:"50x50" %>
       <h1>
       	<%= @product.name %>
@@ -36,7 +37,8 @@
       <!--カートに入れる-->
       <%= form_for @cart_item do |f| %>
       <%= f.hidden_field :product_id, :value => @product.id %>
-      <%= f.number_field :quantity, min: 1 %>
+      <%= f.select :quantity, [[1,1],[2,2],[3,3],[4,4],[5,5],[6,6],[7,7],[8,8],[9,9],[10,10]] %>
+      <!--<%= f.number_field :quantity, min:1 %>-->
       <%= f.submit 'カートに入れる', method: :post, class: "btn btn-primary" %>
       <% end %>
 </div>
