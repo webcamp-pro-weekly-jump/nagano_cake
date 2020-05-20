@@ -21,7 +21,6 @@ class OrdersController < ApplicationController
 		if current_member.cart_items.exists?
 			@order = Order.new(order_params)
 			@order.member_id = current_member.id
-
 			# 住所のラジオボタン選択の引数に応じて分岐
 			@flag = params[:flag]
 			if @flag.to_i == 0 then

@@ -80,7 +80,7 @@
 					<%= @order.name %>
 
 					<%= form.hidden_field :member_id, :value => current_member.id %>
-					<%= form.hidden_field :postal_code, :value => "#{@order_postal_code}" %>
+					<%= form.hidden_field :postal_code, :value => "#{@order.postal_code}" %>
 					<%= form.hidden_field :address, :value => "#{@order.address}" %>
 					<%= form.hidden_field :name, :value => "#{@order.name}" %>
 					<%= form.hidden_field :all_price, :value => "#{@order.all_price}" %>
