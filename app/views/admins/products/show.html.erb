@@ -15,7 +15,8 @@
   <%= Genre.find_by(id: @product.genre_id).name %>
 
 <h4>税込価格（税抜価格）</h4>
-  <%= @product.price %>
+  <%= number_to_currency(@product.price * 1.08, :unit => "¥", :precision => 0) %>
+   (<%= @product.price.to_s(:delimited) %>)
 
 <h4>販売ステータス</h4>
   <% if @product.is_sale == true %>

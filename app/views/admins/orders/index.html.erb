@@ -12,3 +12,17 @@
 			</tr>
 		</thead>
 		<tbody>
+			<%= @orders.each do |order| %>
+			<tr>
+				<td>
+					<%= order.created_at.strftime('%Y/%m/%d') %>
+				</td>
+				<td>
+					<%= Menber.find_by(id: order.member_id).name %>
+				</td>
+				<td>
+
+				</td>
+				<td>
+				</td>
+			</tr>

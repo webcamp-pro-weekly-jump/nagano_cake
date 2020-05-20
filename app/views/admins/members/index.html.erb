@@ -1,42 +1,43 @@
-<!-- 会員一覧ページ -->
+<div class="member index container">
 
-<h2>会員一覧</h2>
+  <h2>会員一覧</h2>
 
-<div class="col-xs-12">
-  <table>
-    <thead>
-      <tr>
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-        <% @members.each do |member| %>
-        <tr>
-          <td>
-            <%= member.id %>
-          </td>
-
-          <td>
-            <%= link_to member.family_name + member.first_name, admins_member_path(member.id)%>
-          </td>
-
-          <td>
-            <%= member.email %>
-          </td>
-
-          <td>
-        	  <% if member.is_valid == true %>
-        	    <%= "有効" %>
-        	  <% else %>
-        	    <%= "退会済" %>
-        	  <% end %>
-          </td>
+  <table class="table member-index">
+    <table border = "1" align = "center" width = "800" height = "100">
+      <thead>
+        <tr height = "40">
+          <th bgcolor = "#EEEEEE">会員ID</th>
+          <th bgcolor = "#EEEEEE">氏名</th>
+          <th bgcolor = "#EEEEEE">メールアドレス</th>
+          <th bgcolor = "#EEEEEE">ステータス</th>
         </tr>
-        <% end %>
-    </tbody>
-  </table>
-  <%= paginate @members %>
+      </thead>
+      <tbody>
+          <% @members.each do |member| %>
+          <tr>
+            <td>
+              <%= member.id %>
+            </td>
+
+            <td>
+              <%= link_to member.family_name + member.first_name, admins_member_path(member.id)%>
+            </td>
+
+            <td>
+              <%= member.email %>
+            </td>
+
+            <td>
+          	  <% if member.is_valid == true %>
+          	    <%= "有効" %>
+          	  <% else %>
+          	    <%= "退会済" %>
+          	  <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+    </table>
+    <%= paginate @members %>
 </div>

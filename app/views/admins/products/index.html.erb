@@ -1,47 +1,47 @@
-<!--商品一覧ページ -->
+<div class = "product index container">
+	<h2>商品一覧</h2>
+	<table class = "table product-index">
 
-<h2>商品一覧</h2>
+	<!-- 新規登録ボタンの設置 classを設置することも可能-->
+	<%= button_to "+", new_admins_product_path, method: :get %>
 
-<!-- 新規登録ボタンの設置 classを設置することも可能-->
-<%= button_to "+", new_admins_product_path, method: :get %>
-
-<div class="col-xs-12">
-	<table>
-		<thead>
-			<tr>
-				<th>商品ID</th>
-				<th>商品名</th>
-				<th>税抜価格</th>
-				<th>ジャンル</th>
-				<th>ステータス</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @products.each do |product| %>
-			<tr>
-				<td>
-				  <%= product.id %>
-				</td>
-				<td>
-				  <%= link_to product.name, admins_product_path(product.id) %>
-			    </td>
-			    <td>
-				  <%= product.price %>
-				</td>
-				<td>
-				  <%= Genre.find_by(id: product.genre_id).name %>
-				</td>
-				<!-- Genreと言う別のテーブルから情報を取得したい場合の書き方。ジャンルテーブルのidと商品テーブルのジャンルidが一致した物をfind_byで取得し、ジャンルテーブルのnameが欲しいのでこの書き方。 -->
-				<td>
-					<% if product.is_sale == true %>
-					  <%= "販売中" %>
-					<% else %>
-					  <%= "販売停止中" %>
-					<% end %>
-				</td>
-			</tr>
-			<% end %>
-		</tbody>
+		<table border = "1" align = "center" width="1000" height = "100">
+			<thead>
+				<tr height = "40">
+					<th bgcolor = "#EEEEEE">商品ID</th>
+					<th bgcolor = "#EEEEEE">商品名</th>
+					<th bgcolor = "#EEEEEE">税抜価格</th>
+					<th bgcolor = "#EEEEEE">ジャンル</th>
+					<th bgcolor = "#EEEEEE">ステータス</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @products.each do |product| %>
+				<tr>
+					<td>
+					  <%= product.id %>
+					</td>
+					<td>
+					  <%= link_to product.name, admins_product_path(product.id) %>
+				    </td>
+				    <td>
+					  <%= product.price.to_s(:delimited) %>
+					</td>
+					<td>
+					  <%= Genre.find_by(id: product.genre_id).name %>
+					</td>
+					<!-- Genreと言う別のテーブルから情報を取得したい場合の書き方。ジャンルテーブルのidと商品テーブルのジャンルidが一致した物をfind_byで取得し、ジャンルテーブルのnameが欲しいのでこの書き方。 -->
+					<td>
+						<% if product.is_sale == true %>
+						  <%= "販売中" %>
+						<% else %>
+						  <%= "販売停止中" %>
+						<% end %>
+					</td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
 	</table>
 	<%= paginate @products %>
 </div>
