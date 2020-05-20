@@ -30,13 +30,14 @@
         </tr>
         <% end %>
 
-          <div class="col-xs-8">
-            <table>
+          <div class="genre index container">
+            <table class="table genre-index">
+              <table border="1" align="left" width="500" height="130">
               <thead>
-                <tr>
-                  <th>ジャンル</th>
-                  <th>状態</th>
-                  <th></th>
+                <tr height= "30">
+                  <th bgcolor = "#EEEEEE">ジャンル</th>
+                  <th bgcolor = "#EEEEEE">状態</th>
+                  <th bgcolor = "#EEEEEE"></th>
                 </tr>
               </thead>
               <tbody>
@@ -53,11 +54,12 @@
                       <%= "無効" %>
                     <% end %>
                   </td>
-                  <td>
-                    <%= link_to "編集する", edit_admins_genre_path(genre.id) %>
+                  <td align="center" valign="middle">
+                    <%= link_to "編集する", edit_admins_genre_path(genre.id), class: "btn btn-sm btn-primary" %>
                   </td>
                 </tr>
                 <% end %>
               </tbody>
+            </table>
             </table>
           </div>
