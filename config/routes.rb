@@ -39,7 +39,9 @@ devise_for :members, controllers: {
 
   resources :members
   #退会処理のルーティング
-  patch '/members/:id/hide' => 'members#hide', as: 'members_hide'
+  put 'hide' => 'members#hide'
+  patch 'hide' => 'members#hide'
+  get 'quit' => 'members#quit'
 
   resources :address, only:[:index, :update, :destroy, :create, :edit]
 
