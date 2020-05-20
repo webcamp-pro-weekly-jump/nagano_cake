@@ -9,6 +9,8 @@ class OrdersController < ApplicationController
 
 	def index
 		@orders = @member.orders
+		# 注文一覧を降順で表示する
+		@orders = Order.all.order("id DESC").page(params[:page]).per(10)
 	end
 
 	def show
