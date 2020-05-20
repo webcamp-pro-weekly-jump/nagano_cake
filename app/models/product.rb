@@ -1,6 +1,6 @@
 class Product < ApplicationRecord
 	belongs_to :genres, optional: true
-	belongs_to :home
+	belongs_to :home, optional: true
 	attachment :image
 
 	has_many :cart_items, dependent: :destroy

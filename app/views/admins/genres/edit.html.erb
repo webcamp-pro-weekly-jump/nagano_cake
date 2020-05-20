@@ -11,21 +11,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%= form_for(@genre, url: edit_admins_genre_path) do |f| %>
 			<tr>
 				<td>
 			　     <h4>ジャンル</h4>
 		        </td>
 		        <td>
-				   <%= f.text_field :name %>
-				   <%= f.radio_button :is_valid, true %>
-				   <%= f.label :is_valid, "有効" %>
-				   <%= f.radio_button :is_valid, false %>
-				   <%= f.label :is_valid, "無効" %>
-				   <%= f.submit "変更を保存する" %>
+		        	<!-- turbolinksが原因 -->
+		           <%= form_for(@genre, url: edit_admins_genre_path) do |f| %>
+					   <%= f.text_field :name %>
+					   <%= f.radio_button :is_valid, true %>
+					   <%= f.label :is_valid, "有効" %>
+					   <%= f.radio_button :is_valid, false %>
+					   <%= f.label :is_valid, "無効" %>
+					   <%= f.submit "変更を保存する" %>
+				   <% end %>
 				</td>
 			</tr>
-			<% end %>
 		</tbody>
 	</table>
 </div>
