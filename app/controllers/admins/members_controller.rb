@@ -16,7 +16,7 @@ class Admins::MembersController < ApplicationController
 	def update
 		@member = Member.find(params[:id])
 		@member.update(member_params)
-		redirect_to admins_members_path #仮です
+		redirect_to admins_member_path(@member.id) #パス先変更
 	end
 
     private
