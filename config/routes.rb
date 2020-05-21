@@ -16,6 +16,7 @@ devise_for :members, controllers: {
   	resources :genres, only:[:new, :create, :index, :edit, :update] #ジャンルページ作成の為
     resources :members, only:[:index, :show, :edit, :update] #会員のページ作成の為
     resources :orders, only:[:index, :show, :update]
+    resources :order_items, only:[:update]
 
   end
   patch '/admins/genres/:id/edit' => 'admins/genres#update' #ルーティングエラー発生のため追記
