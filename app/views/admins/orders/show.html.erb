@@ -3,12 +3,26 @@
 
 <!-- 購入者情報 -->
 <h4>購入者</h4>
+<%= Member.find_by(id: @order.member_id).family_name %>
+<%= Member.find_by(id: @order.member_id).first_name %>
 
 <h4>配送先</h4>
+<%= Address.find_by(id: @order.member_id).pastal_code %>
+<%= Address.find_by(id: @order.member_id).address %>
+<%= Address.find_by(id: @order.member_id).name %>
 
 <h4>支払方法</h4>
+<% if @order.pay_method == 0 %>
+  <p>クレジットカード</p>
+<% else %>
+  <p>銀行振込</p>
+<% end %>
 
 <h4>注文ステータス</h4>
+<%= form_for(@order, url:admins_order_path(@order.id)) do |f| %>
+	<%= f.select :order_status, Order.order_statuses.keys %>
+	<%= f.submit "更新" %>
+<% end %>
 
 <!-- テーブル -->
 <div class="col-xs-12">
