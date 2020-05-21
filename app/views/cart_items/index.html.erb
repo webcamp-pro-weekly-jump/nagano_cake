@@ -7,75 +7,81 @@
 	    <div class="col-xs-4 col-xs-offset-4">
 	　    <%= button_to 'カートを空にする', empty_path_url, method: :delete, class: "btn btn-danger pull-right" %>
 	    </div>
-	<%= alert %>
-	<%= notice %>
+	    <!--カート情報が更新されたときにメッセージが表示される-->
+	    <h4 class="alert">
+	    	<%= alert %>
+	    </h4>
+	    <h4 class="alert">
+	    	<%= notice %>
+	    </h4>
 
-	<!--カートの中身-->
-	 <table class="table-bordered col-xs-12">
-	 	<thead>
-	 		<tr class="bg-secondary">
-	 			<th class="col-auto" bgcolor="#e6e6e6">商品名</th>
-	 			<th class="col-auto" bgcolor="#e6e6e6">単価(税込)</th>
-	 			<th class="col-auto" bgcolor="#e6e6e6">数量</th>
-	 			<th class="col-auto" bgcolor="#e6e6e6">小計</th>
-	 			<th colspan="3" bgcolor="#e6e6e6"></th>
-	 		</tr>
-	 	</thead>
+	    <!--カートの中身-->
+	     <table class="table table-bordered col-xs-12">
+	 	  <thead>
+	 	   <tr class="bg-secondary">
+	 		<th bgcolor="#e6e6e6" class="col-xs-4">商品名</th>
+	 		<th bgcolor="#e6e6e6" class="col-xs-2">単価(税込)</th>
+	 		<th bgcolor="#e6e6e6" class="col-xs-2">数量</th>
+	 		<th bgcolor="#e6e6e6" class="col-xs-2">小計</th>
+	 		<th colspan="3" bgcolor="#e6e6e6" class="col-xs-2"></th>
+	 	   </tr>
+	 	  </thead>
 
-	 	<tbody>
-	 		<tr>
-	 			<!--合計金額の算出に必要--->
-	 			<% sum = 0 %>
-	 			<% @cart_items.each do |cart_item| %>
+	 	  <!--合計金額の算出に必要--->
+	 		<% sum = 0 %>
+	 		<% @cart_items.each do |cart_item| %>
+	 	     <tbody class="text-center">
+	 		   <tr>
 	 			<td>
 	 				<%= attachment_image_tag cart_item.product, :image, :fill, 20, 20, format: 'jpeg', class: "img-rounded pull-left",fallback: "no_image.jpg",size:"50x50" %>
-	 				<p><%= cart_item.product.name %></p>
+	 				<strong><%= cart_item.product.name %></strong>
 	 			</td>
+
+                <!--税込み価格の算出--->
 	 			<td>
-	 				<!--税込み価格の算出--->
 	 				<% tax_price = cart_item.product.price * 1.08 %>
-	 				<%= number_to_currency(tax_price, :unit => "", :precision => 0) %>
+	 				<strong><%= number_to_currency(tax_price, :unit => "", :precision => 0) %><</strong>
 	 			</td>
 	 			<td>
 	 			    <%= form_for cart_item do |f| %>
-	 			    <%= f.number_field :quantity, min: 1,class: "number-field" %>
-	 			    <%= f.submit '更新', class: 'btn btn-info' %>
+	 			    <%= f.number_field :quantity, min: 1,class: "number-field col-xs-4" %>
+	 			    <%= f.submit '更新', class: 'btn btn-primary' %>
 	 			    <% end %>
 	 			</td>
+	 			<!--単価×数量--->
 	 			<td>
-	 				<!--単価×数量--->
 	 				<% sub_total = tax_price * cart_item.quantity %>
-	 				<%= number_to_currency(sub_total, :unit =>"", :precision => 0) %>
+	 				<strong><%= number_to_currency(sub_total, :unit =>"", :precision => 0) %></strong>
 	 			</td>
+	 			<!--商品一つずつ削除--->
 	 			<td>
-	 				<!--商品一つずつ削除--->
-	 			    <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger" %>
+	 			    <%= link_to '削除する', cart_item_path(cart_item.id), method: :delete, class: "btn btn-danger text-center" %>
 	 			</td>
 	 			<!--合計金額の計算式--->
 	 			<% sum+=sub_total %>
 	 			<% end %>
-	 		</tr>
-	 	</tbody>
-	 </table>
-<br>
-     <!--商品一覧画面へ--->
-     <div class="col-xs-12">
-     <div class="col-xs-4">
-	 <%= link_to '買い物を続ける', products_path, class: "btn btn-info pull-left" %>
-     </div>
-     <div class="col-xs-4 col-xs-offset-10">
-	 <table class="table-bordered">
-		<tr>
-			<td bgcolor="#e6e6e6">合計金額</td>
-			<td><%= number_to_currency(sum, :unit => "", :precision => 0) %></td>
-		</tr>
-	 </table>
-	</div>
-　　<!--注文情報入力--->
-    <div class="col-xs-4 center-block">
-	<%= link_to '情報入力に進む', new_order_path, class: "btn btn-success col-md-6" %>
+	 		   </tr>
+	 	     </tbody>
+	     </table>
+
+        <!--商品一覧画面へ--->
+         <div class="col-xs-12">
+          <div class="col-xs-4 pull-left">
+	       <%= link_to '買い物を続ける', products_path, class: "btn btn-primary product-botton" %>
+          </div>
+          <div class="col-xs-4 col-xs-offset-8">
+	       <table class="table table-bordered">
+		     <tr>
+			  <td bgcolor="#e6e6e6"><storng>合計金額</storng></td>
+			  <td><strong><%= number_to_currency(sum, :unit => "", :precision => 0) %></strong></td>
+		     </tr>
+	       </table>
+	      </div>
+　　    <!--注文情報入力--->
+         <div class="col-xs-4 col-xs-offset-5">
+	      <%= link_to '情報入力に進む', new_order_path, class: "btn btn-success col-md-6" %>
+         </div>
+         </div>
     </div>
-    </div>
-   </div>
  </div>
 </div>
