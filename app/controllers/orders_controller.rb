@@ -39,8 +39,8 @@ class OrdersController < ApplicationController
 
 			@order.save
 
-			# 新しいお届け先の入力内容に一致するものがなければ、登録する
-			 if Address.find_by(address: @order.address).nil?
+			# 新しいお届け先の入力内容に一致するものがない。かつ、会員自身の住所ではない場合に登録する
+			 if Address.find_by(address: @order.address).nil? && @flag.to_i != 0
 				@address = Address.new
 				@address.pastal_code = params[:order][:postal_code]
 				@address.address = @order.address
@@ -84,7 +84,7 @@ class OrdersController < ApplicationController
 			@order.address = @send_to_address.address
 			@order.name = @send_to_address.name
 		elsif @flag.to_i == 2 then
-			@order_postal_code = params[:order][:add_address][:postal_code]
+			@order.postal_code = params[:order][:add_address][:postal_code]
 			@order.address = params[:order][:add_address][:address]
 			@order.name = params[:order][:add_address][:name]
 		end
