@@ -40,7 +40,7 @@
                 <!--税込み価格の算出--->
 	 			<td>
 	 				<% tax_price = cart_item.product.price * 1.08 %>
-	 				<strong><%= number_to_currency(tax_price, :unit => "", :precision => 0) %><</strong>
+	 				<strong><%= number_to_currency(tax_price, :unit => "", :precision => 0) %></strong>
 	 			</td>
 	 			<td>
 	 			    <%= form_for cart_item do |f| %>
