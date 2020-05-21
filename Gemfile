@@ -78,3 +78,5 @@ gem 'jquery-rails'
 gem 'pry-byebug'
 gem 'rspec-rails'
 
+#layouts
+gem 'bootstrap-sass'
