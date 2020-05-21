@@ -17,7 +17,7 @@
      
       <% @genres.each do |genre| %>
        <td>
-        <%= link_to products_path(genre_id: genre.id) do %>
+        <%= link_to products_path(genre_id: genre.id)  do %>
         <%= genre.name %>
         <% end %>
        </td>
@@ -27,7 +27,7 @@
  </table>
 </div>
 
-<div>
+<div class="style">
 　<P>ようこそ、NaganoCakeへ！</P>
   <p>このサイトは、ケーキ販売のECサイトのなります。</p>
   <p>会員でない方も商品の閲覧はできますが、<br>
