@@ -10,11 +10,16 @@
   </head>
 
   <body>
-    <header>
+    <header> 
+      <div class="container">
+        <div class="row">
+        <div class="col-xs-7">
       <h1>rogo</h1>
+        </div>
+      <div class="col-xs-5"> 
 
-      <nav>
-          <ul>
+        <nav>
+           <ul class="nav navbar-nav">
             
             <!--if文でサインインとアウト時の表示を変更-->
             <% if member_signed_in? %>
@@ -24,7 +29,9 @@
             <li><%= link_to "ログアウト", destroy_member_session_path, method: :delete %></li>
 
 
-
+      <div class="col-xs-5">
+        <nav>
+           <ul class="nav navbar-nav">
              
             <% elsif admin_signed_in? %>
             <li><%= link_to ' 商品一覧', admins_products_path %></li>
@@ -35,8 +42,10 @@
 
 
 
-
-            
+      <div class="col-xs-5">
+        <nav>
+            <ul class="nav navbar-nav">
+                
             <% else %>
             <li><%= link_to ' 商品一覧', products_path  %></li>
             <li><%= link_to ' 新規登録', new_member_registration_path %></li>
@@ -49,6 +58,11 @@
 
           </ul>
         </nav>
+      </div>
+      </div>
+      </div>
+      </div>
+
     
            
           
