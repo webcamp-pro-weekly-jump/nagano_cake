@@ -1,72 +1,78 @@
-<div>
-	<h2>注文情報入力</h2>
+<div class = "container confirm">
+	<h2><strong>注文情報入力</strong></h2>
 
 	<%= form_with(model: @order, local: true, url:{action: 'order_show'}) do |form| %>
-	<!-- 支払い方法の選択 -->
-		<div>
-			<h3>支払い方法</h3>
-			<!-- ラジオボタンでクレジットカードか銀行振込のいずれかを選択 -->
-			<p>
-				<label><%= form.radio_button :pay_method, 0 %>クレジットカード</label><br>
-			</p>
+		<!-- 支払い方法の選択 -->
+		<div class = "row">
+			<div class = "col col-xs-4">
+				<h3>支払い方法</h3>
+				<!-- ラジオボタンでクレジットカードか銀行振込のいずれかを選択 -->
+				<p>
+					<label><%= form.radio_button :pay_method, 0 %>クレジットカード</label><br>
+				</p>
 
-			<p>
-				<label><%= form.radio_button :pay_method, 1 %>銀行振込</label><br>
-			</p>
+				<p>
+					<label><%= form.radio_button :pay_method, 1 %>銀行振込</label><br>
+				</p>
+			</div>
 		</div>
-	<!-- -------------- -->
+		<!-- -------------- -->
 
 		<!-- 配送先の選択/記入 -->
-		<div>
-			<h3>お届け先</h3>
-			<!-- ラジオボタンで自分の住所/登録済み住所/新規登録のいずれかを選択 -->
-			<div>
-				<p>
-					<label>
-						<%= form.radio_button :flag, 0, checked: true %>ご自身の住所
-					</label><br>
-					<%= @member.postal_code %><br>
-					<%= @member.address %>
-					<%= @member.family_name + " " + @member.first_name %>
-				</p>
-			</div>
-
-			<div>
-				<p>
-					<label><%= form.radio_button :flag, 1,style: "display: inline-block" %>登録済み住所から選択</label><br>
-					<!-- セレクトボックスで登録済み住所を選択できるようにしたい -->
-   					<%= form.collection_select :address, @member.addresses, :id, :select_address, include_blank: "---- 選択して下さい ----" %>
-				</p>
-			</div>
-
-			<div>
-				<%= form.fields_for :add_address do |f| %>
+		<div class = "row">
+			<div class = "col col-xs-8">
+				<h3>お届け先</h3>
+				<!-- ラジオボタンで自分の住所/登録済み住所/新規登録のいずれかを選択 -->
+				<div>
 					<p>
-						<label><%= form.radio_button :flag, 2, style: "display: inline-block" %>新しいお届け先</label><br>
-						<table>
-							<tr>
-								<th>郵便番号（ハイフンなし）</th>
-								<td><%= f.text_field :postal_code %></td>
-							</tr>
-
-							<tr>
-								<th>お届け先住所</th>
-								<td><%= f.text_field :address, size: 50 %></td>
-							</tr>
-
-							<tr>
-								<th>宛名</th>
-								<td><%= f.text_field :name %></td>
-							</tr>
-						</table>
+						<label>
+							<%= form.radio_button :flag, 0, checked: true %>ご自身の住所
+						</label><br>
+						<%= @member.postal_code %><br>
+						<%= @member.address %>&nbsp;
+						<%= @member.family_name + " " + @member.first_name %>
 					</p>
-				<% end %>
+				</div>
+
+				<div>
+					<p>
+						<label><%= form.radio_button :flag, 1,style: "display: inline-block" %>登録済み住所から選択</label><br>
+						<!-- セレクトボックスで登録済み住所を選択できるようにしたい -->
+   						<%= form.collection_select :address, @member.addresses, :id, :select_address, include_blank: "---- 選択して下さい ----" %>
+					</p>
+				</div>
+
+				<div>
+					<%= form.fields_for :add_address do |f| %>
+						<p>
+							<label><%= form.radio_button :flag, 2, style: "display: inline-block" %>新しいお届け先</label><br>
+							<table>
+								<tr>
+									<th>郵便番号（ハイフンなし）</th>
+									<td><%= f.text_field :postal_code %></td>
+								</tr>
+
+								<tr>
+									<th>お届け先住所</th>
+									<td><%= f.text_field :address, size: 50 %></td>
+								</tr>
+
+								<tr>
+									<th>宛名</th>
+									<td><%= f.text_field :name %></td>
+								</tr>
+							</table>
+						</p>
+					<% end %>
+				</div>
 			</div>
 		</div>
 		<!-- ---------------- -->
 
-		<div style="text-align: center;">
-			<%= form.submit "確認画面へ進む", class: "btn btn-primary"%>
+		<div class = "button">
+			<div class="col-md-8 col-md-offset-2">
+				<%= form.submit "確認画面へ進む", class: "btn btn-primary"%>
+			</div>
 		</div>
 	<% end %>
 </div>

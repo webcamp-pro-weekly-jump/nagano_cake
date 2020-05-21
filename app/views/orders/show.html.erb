@@ -4,32 +4,32 @@
 		<div class = "col col-xs-6">
 			<h3>注文情報</h3>
 			<table>
-  				<table border = "1" width = "500" height = "200" >
+  				<table border = "1" width = "100%" height = "200" >
 					<tbody>
 						<tr>
-							<th bgcolor = "#EEEEEE">注文日</th>
-							<td>
-								<%= @order.created_at.strftime('%Y/%m/%d') %>
+							<td align = center bgcolor = "#EEEEEE">注文日</td>
+							<td align = center>
+								<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
 							</td>
 						</tr>
 
 						<tr>
-							<th bgcolor = "#EEEEEE">配送先</th>
-							<td>
+							<td align = center bgcolor = "#EEEEEE">配送先</td>
+							<td align = center>
 								<%= @order.address %>
 							</td>
 						</tr>
 
 						<tr>
-							<th bgcolor = "#EEEEEE">支払方法</th>
-							<td>
+							<td align = center bgcolor = "#EEEEEE">支払方法</td>
+							<td align = center>
 								<%= render 'orders/pay_method', order: @order %>
 							</td>
 						</tr>
 
 						<tr>
-							<th bgcolor = "#EEEEEE">ステータス</th>
-							<td>
+							<td align = center bgcolor = "#EEEEEE">ステータス</td>
+							<td align = center>
 								<%= render 'orders/order_status', order: @order %>
 							</td>
 						</tr>
@@ -39,13 +39,13 @@
 
 			<h3>注文内容</h3>
 			<table>
-  				<table border = "1" width = "700" height = "130" >
+  				<table border = "1" width = "120%" height = "130" >
 					<thead>
 						<tr>
-							<th width = "60%" bgcolor = "#EEEEEE">商品名</th>
-							<th width = "15%" bgcolor = "#EEEEEE">単価（税込）</th>
-							<th bgcolor = "#EEEEEE">個数</th>
-							<th bgcolor = "#EEEEEE">小計</th>
+							<td align = center width = "60%" bgcolor = "#EEEEEE">商品名</td>
+							<td align = center width = "15%" bgcolor = "#EEEEEE">単価（税込）</td>
+							<td align = center bgcolor = "#EEEEEE">個数</td>
+							<td align = center bgcolor = "#EEEEEE">小計</td>
 						</tr>
 					</thead>
 					<tbody>
@@ -53,26 +53,26 @@
 						<% @order.order_items.each do |order_item| %>
 							<tr>
 								<!-- 商品名の表示 -->
-								<td>
+								<td align = center>
 									<%= order_item.product.name %>
 								</td>
 								<!-- ---------- -->
 
 								<!-- 単価（税込み）の表示 -->
-								<td>
-									<%= order_item.tax_price %>円
+								<td align = center>
+									<%= order_item.tax_price %>&nbsp;円
 								</td>
 								<!-- ------------------ -->
 
 								<!-- 個数の表示 -->
-								<td>
-									<%= order_item.quantity %>個
+								<td align = center>
+									<%= order_item.quantity %>
 								</td>
 								<!-- --------- -->
 
 								<!-- 小計の表示 -->
-								<td>
-									<%= syoukei = order_item.tax_price * order_item.quantity %>円
+								<td align = center>
+									<%= syoukei = order_item.tax_price * order_item.quantity %>&nbsp;円
 								</td>
 								<% sum = sum + syoukei %>
 							</tr>
@@ -85,26 +85,26 @@
 		<div class = "col col-xs-6">
 			<h3>請求情報</h3>
 			<table>
-   				<table border = "1" width = "300" height = "130" >
+   				<table border = "1" width = "100%" height = "130" >
 					<tbody>
 						<tr>
-							<th bgcolor = "#EEEEEE">商品合計</th>
-							<td>
-								<%= sum %>円
+							<td align = center bgcolor = "#EEEEEE">商品合計</td>
+							<td align = center>
+								<%= sum %>&nbsp;円
 							</td>
 						</tr>
 
 						<tr>
-							<th bgcolor = "#EEEEEE">配送料</th>
-							<td>
-								<%= @order.postage %>円
+							<td align = center bgcolor = "#EEEEEE">配送料</td>
+							<td align = center>
+								<%= @order.postage %>&nbsp;円
 							</td>
 						</tr>
 
 						<tr>
-							<th bgcolor = "#EEEEEE">ご請求額</th>
-							<td>
-								<%= sum + @order.postage %>円
+							<td align = center bgcolor = "#EEEEEE">ご請求額</td>
+							<td align = center>
+								<%= sum + @order.postage %>&nbsp;円
 							</td>
 						</tr>
 					</tbody>
