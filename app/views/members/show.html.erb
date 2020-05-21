@@ -1,34 +1,51 @@
-<div>
-	<h4>マイページ</h4>
-	 <p>登録情報</p> <%= link_to '編集する',edit_member_path(@member), class: "btn btn-primary" %> <%= link_to 'パスワードを変更する',edit_member_registration_path(@member), class: "btn btn-primary" %>
+<div class="container">
+	<div class="row">
+	 <h4>マイページ</h4>
+	  <div class="col-xs-4"><strong>登録情報</strong></div>
+	   <div class="col-xs-4 member-botton">
+	 	<%= link_to '編集する',edit_member_path(@member), class: "btn btn-primary" %>
+	 	<%= link_to 'パスワードを変更する',edit_member_registration_path(@member), class: "btn btn-primary" %>
+	   </div>
 
-	  <table class="table-bordered">
+    <div class="col-xs-8">
+	  <table class="table table-bordered">
 	  	<tr>
-			<td>氏名</td>
+			<td bgcolor="#e6e6e6">氏名</td>
 			<td><%= @member.family_name %> <%= @member.first_name %></td>
 		</tr>
 	  	<tr>
-			<td>カナ</td>
+			<td bgcolor="#e6e6e6">カナ</td>
 			<td><%= @member.family_name_kana %><%= @member.first_name_kana %></td>
 		</tr>
 	  	<tr>
-			<td>郵便番号</td>
+			<td bgcolor="#e6e6e6">郵便番号</td>
 			<td><%= @member.postal_code %></td>
 		</tr>
 	  	<tr>
-			<td>住所</td>
+			<td bgcolor="#e6e6e6">住所</td>
 			<td><%= @member.address %></td>
 		</tr>
 		<tr>
-			<td>電話番号</td>
+			<td bgcolor="#e6e6e6">電話番号</td>
 			<td><%= @member.tel %></td>
 		</tr>
 	  	<tr>
-			<td>メールアドレス</td>
+			<td bgcolor="#e6e6e6">メールアドレス</td>
 			<td><%= @member.email %></td>
 		</tr>
 	  </table>
+	</div>
 
-	  配送先 <%= link_to '一覧を見る', address_index_path,class: "btn btn-primary" %>
+    <div class="col-xs-12">
+	  <div class="col-xs-8 member-botton">
+	  	<div class="col-xs-4">配送先</div>
+	  <%= link_to '一覧を見る', address_index_path, class: "btn btn-primary" %>
+	  </div>
 	  <br>
-	  注文履歴 <%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
+	  <div class="col-xs-8 member-botton">
+	  	<div class="col-xs-4">注文履歴</div>
+	  <%= link_to '一覧を見る', orders_path, class: "btn btn-primary" %>
+	  </div>
+	</div>
+ </div>
+</div>
