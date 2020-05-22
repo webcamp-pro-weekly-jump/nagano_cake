@@ -3,4 +3,4 @@
 
 
 
-<p>本日の注文件数 <%= @orders.count %>件</p>
+<p>本日の注文件数 <%= link_to @orders.count, admins_orders_path %>件</p>
