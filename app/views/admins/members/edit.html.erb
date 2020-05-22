@@ -1,37 +1,69 @@
 <!-- 会員情報編集ページ -->
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<h2><%= @member.family_name + @member.first_name %>さんの会員情報編集</h2>
 
-<h2><%= @member.family_name + @member.first_name %>さんの会員情報編集</h2>
-
-<h4>会員ID</h4>
-<%= @member.id %>
-
-<%= form_for(@member, url: edit_admins_member_path(@member.id)) do |f| %>
-	<h4>氏名</h4>
-	<%= f.text_field :family_name %> <%= f.text_field :first_name %>
-
-	<h4>フリガナ</h4>
-	<%= f.text_field :family_name_kana %> <%= f.text_field :first_name_kana %>
-
-	<h4>郵便番号</h4>
-	<%= f.text_field :postal_code %>
-
-	<h4>住所</h4>
-	<%= f.text_field :address %>
-
-	<h4>電話番号</h4>
-	<%= f.text_field :tel %>
-
-	<h4>メールアドレス</h4>
-	<%= f.text_field :email %>
-
-	<h4>会員ステータス</h4>
-    <%= f.radio_button :is_valid, true %>
-    <%= f.label :is_valid, "有効" %>
-    <%= f.radio_button :is_valid, false %>
-    <%= f.label :is_valid, "退会済み" %>
-
-    <br>
-
-    <%= f.submit "変更を保存する", class: "btn btn-sm btn-primary" %>
-
-<% end %>
+			<%= form_for(@member, url: edit_admins_member_path(@member.id)) do |f| %>
+			<table>
+				<thead>
+					<tbody>
+						<tr>
+							<th>会員ID</th>
+							<td>
+			                  <%= @member.id %>
+			                </td>
+			            </tr>
+						<tr>
+							<th>氏名</th>
+							<td>
+							  <%= f.text_field :family_name %> <%= f.text_field :first_name %>
+							</td>
+						</tr>
+						<tr>
+							<th>フリガナ</th>
+							<td>
+							  <%= f.text_field :family_name_kana %> <%= f.text_field :first_name_kana %>
+							</td>
+						</tr>
+						<tr>
+							<th>郵便番号</th>
+							<td>
+							  <%= f.text_field :postal_code %>
+							</td>
+						</tr>
+						<tr>
+							<th>住所</th>
+							<td>
+							  <%= f.text_field :address %>
+							</td>
+						</tr>
+						<tr>
+							<th>電話番号</th>
+							<td>
+							  <%= f.text_field :tel %>
+							</td>
+						</tr>
+						<tr>
+							<th>メールアドレス</th>
+							<td>
+							  <%= f.text_field :email %>
+							</td>
+						</tr>
+						<tr>
+							<th>会員ステータス</th>
+							<td>
+						      <%= f.radio_button :is_valid, true %>
+						      <%= f.label :is_valid, "有効" %>
+						      <%= f.radio_button :is_valid, false %>
+						      <%= f.label :is_valid, "退会済み" %>
+						    </td>
+						</tr>
+					</tbody>
+				</thead>
+			</table>
+			<%= f.submit "変更を保存する", class: "btn btn-sm btn-primary" %>
+			<% end %>
+		</div>
+	</div>
+</div>
