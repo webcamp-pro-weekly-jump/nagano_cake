@@ -5,7 +5,7 @@ class HomesController < ApplicationController
 
 	def top
 	@genres = Genre.all
-		
+	@products = Product.page(params[:page]).per(4)
 	end
 
 
