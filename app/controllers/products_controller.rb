@@ -6,11 +6,11 @@ class ProductsController < ApplicationController
 		@genre = Genre.where(is_valid: true)
 		if params[:genre_id]
 			@genre = Genre.find(params[:genre_id])
-			@products = Product.where(genre_id: @genre.id).page(params[:page]).per(10)
+			@products = Product.where(genre_id: @genre.id).page(params[:page]).per(8)
 			@title = Genre.find(params[:genre_id]).name
 			@counts = Product.where(genre_id: @genre.id).count
 	    else
-	        @products = Product.page(params[:page]).per(10)
+	        @products = Product.page(params[:page]).per(8)
 	        @title = "商品"
 	        @counts = Product.count
 	    end
