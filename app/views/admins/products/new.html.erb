@@ -57,14 +57,10 @@
 							      <%= f.select :is_sale, [["販売中", true ], ["販売停止中", false ]], include_blank: "--選択してください--" %>
 							    </td>
 							</tr>
-							<tr>
-								<td>
-								  <%= f.submit '新規登録', class: "btn btn-sm btn-primary" %>
-							    </td>
-							</tr>
 				        </tbody>
 				    </thead>
 				</table>
+				<%= f.submit '新規登録', class: "btn btn-sm btn-primary pull-right" %>
 				<% end %>
 			</div>
 		</div>

@@ -56,15 +56,11 @@
                   <% end %>
                 </td>
                </tr>
-               <tr>
-                <td>
-                  <%= link_to "編集する",  edit_admins_product_path(@product.id), class: "btn btn-sm btn-primary" %>
-                </td>
-              </tr>
             </tbody>
           </thead>
         </table>
       </div>
     </div>
+    <%= link_to "編集する",  edit_admins_product_path(@product.id), class: "btn btn-sm btn-primary pull-right" %>
   </div>
 </div>
