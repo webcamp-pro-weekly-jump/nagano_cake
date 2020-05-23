@@ -42,7 +42,7 @@
                             <tr>
                             	<th>ジャンル</th>
                                 <td>
-                                  <%= f.collection_select :genre_id, Genre.all, :id, :name, include_blank: "--選択して下さい--" %>
+                                  <%= f.collection_select :genre_id, Genre.where(is_valid: true), :id, :name, include_blank: "--選択して下さい--" %>
                                 </td>
                             </tr>
                             <tr>
