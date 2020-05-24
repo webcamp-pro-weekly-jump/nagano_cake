@@ -37,33 +37,38 @@ class OrdersController < ApplicationController
 				@order.name = params[:order][:name]
 			end
 
-			@order.save
+			if @order.save
 
-			# 新しいお届け先の入力内容に一致するものがない。かつ、会員自身の住所ではない場合に登録する
-			 if Address.find_by(address: @order.address).nil? && @flag.to_i != 0
-				@address = Address.new
-				@address.pastal_code = params[:order][:postal_code]
-				@address.address = @order.address
-				@address.member_id = current_member.id
-				@address.name = @order.name
-				@address.save!
+				# 新しいお届け先の入力内容に一致するものがない。かつ、会員自身の住所ではない場合に登録する
+				 if Address.find_by(address: @order.address).nil? && @flag.to_i != 0
+					@address = Address.new
+					@address.pastal_code = params[:order][:postal_code]
+					@address.address = @order.address
+					@address.member_id = current_member.id
+					@address.name = @order.name
+					@address.save
+				end
+
+				# cart_itemsの内容をorder_itemsに新規登録
+				current_member.cart_items.each do |cart_item|
+		  			order_item = @order.order_items.build
+		  			order_item.order_id = @order.id
+		  			order_item.product_id = cart_item.product_id
+		  			order_item.quantity = cart_item.quantity
+		  			order_item.tax_price = cart_item.product.price * 1.08
+					# order_itemにデータを保存
+		  			order_item.save
+		  			# cart_itemのデータを削除
+		  			cart_item.destroy
+				end
+
+				render :success
+			else
+				render :new
 			end
 
-			# cart_itemsの内容をorder_itemsに新規登録
-			current_member.cart_items.each do |cart_item|
-		  		order_item = @order.order_items.build
-		  		order_item.order_id = @order.id
-		  		order_item.product_id = cart_item.product_id
-		  		order_item.quantity = cart_item.quantity
-		  		order_item.tax_price = cart_item.product.price * 1.08
-				# order_itemにデータを保存
-		  		order_item.save
-		  		# cart_itemのデータを削除
-		  		cart_item.destroy
-			end
-			render action: :success # 注文完了ページに遷移させたい
 		else
-			redirect_to products_path
+			redirect_to  new_order_path, alert: 'カートが空です。'
 		end
 	end
 
