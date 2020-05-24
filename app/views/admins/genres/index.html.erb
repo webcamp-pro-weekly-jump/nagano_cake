@@ -12,23 +12,21 @@
       </tr>
     </thead>
     <tbody>
-        <%= form_for(@genre, url: admins_genres_path) do |f| %>
         <tr>
           <td>
             <h4>ジャンル</h4>
           </td>
           <td>
-            <%= f.text_field :name %>
-          </td>
-          <td>
-          	<%= f.radio_button :is_valid, true %>
-          	<%= f.label :is_valid, "有効" %>
-          	<%= f.radio_button :is_valid, false %>
-          	<%= f.label :is_valid, "無効" %>
-          	<%= f.submit "追加", class: "btn btn-sm btn-primary" %>
+            <%= form_for(@genre, url: admins_genres_path) do |f| %>
+              <%= f.text_field :name %>
+            	<%= f.radio_button :is_valid, true %>
+            	<%= f.label :is_valid, "有効" %>
+            	<%= f.radio_button :is_valid, false %>
+            	<%= f.label :is_valid, "無効" %>
+            	<%= f.submit "追加", class: "btn btn-sm btn-primary" %>
+            <% end %>
           </td>
         </tr>
-        <% end %>
 
           <div class="genre index container">
             <table class="table genre-index">
