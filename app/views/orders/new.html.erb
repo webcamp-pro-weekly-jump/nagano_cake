@@ -1,4 +1,24 @@
 <div class = "container confirm">
+
+	<!-- フラッシュメッセージの表示 -->
+	<div class = "alert">
+		<font size = "5"><%= alert %></font>
+	</div>
+
+	<!-- バリデーションエラーメッセージの表示 -->
+	<% if @order.errors.any? %>
+  		<div id="error_explanation" class="alert alert-danger">
+    		<ul>
+    			<h3><%= @order.errors.count %>件のエラーがあります。</h3>
+      			<% @order.errors.full_messages.each do |message| %>
+        			<li><%= message %></li>
+      			<% end %>
+    		</ul>
+  		</div>
+	<% end %>
+	<!-- ------------------------ -->
+
+
 	<h2><strong>注文情報入力</strong></h2>
 
 	<%= form_with(model: @order, local: true, url:{action: 'order_show'}) do |form| %>
@@ -37,7 +57,7 @@
 				<div>
 					<p>
 						<label><%= form.radio_button :flag, 1,style: "display: inline-block" %>登録済み住所から選択</label><br>
-						<!-- セレクトボックスで登録済み住所を選択できるようにしたい -->
+						<!-- セレクトボックスで登録済み住所を選択する -->
    						<%= form.collection_select :address, @member.addresses, :id, :select_address, include_blank: "---- 選択して下さい ----" %>
 					</p>
 				</div>
