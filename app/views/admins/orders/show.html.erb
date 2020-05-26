@@ -61,9 +61,9 @@
 					<th bgcolor = "#EEEEEE"></th>
 				</tr>
 			</thead>
+			<% sum = 0 %>
+			<% @order.order_items.each do |order_item| %>
 			<tbody>
-					<% sum = 0 %>
-					<% @order.order_items.each do |order_item| %>
 					<tr>
 						<td>
 							<%= order_item.product.name %>
@@ -85,12 +85,12 @@
 						<td>
 							<%= f.submit '更新', class: "btn btn-sm btn-primary" %>
 						</td>
-							<% end %>
 						<% sum+=subtotal %>
 				    </tr>
-					<% end %>
 		    </tbody>
 		</table>
+		<% end %>
+		<% end %>
 
 				<table>
 	   				<table class="pull-right">
