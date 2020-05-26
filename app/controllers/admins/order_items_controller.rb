@@ -3,8 +3,17 @@ class Admins::OrderItemsController < ApplicationController
 	def update
 		# @order = Order.find(params[:id])
 		@order_item = OrderItem.find(params[:id])
-		@order_item.update(order_item_params)
-		redirect_to admins_order_path(@order_item.order_id), notice: "製作ステータスを更新しました！"
+		if@order_item.update(order_item_params)
+		  if @order_item.making_status == "製作中"
+			 @order_item.order.update(order_status: "製作中")
+		  end
+		  if @order_item.making_status == "製作完了"
+			 @order_item.order.update(order_status: "発送準備中")
+			 redirect_back(fallback_location: root_path)
+		  end
+		else
+ 		    redirect_to admins_order_path(@order_item.order_id), notice: "製作ステータスを更新しました！"
+ 		end
 		#@order_item.order_idで注文商品の含まれている注文にリダイレクトする。
 	end
 
