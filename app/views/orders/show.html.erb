@@ -1,0 +1,124 @@
+<div class = "container show">
+	<h2>注文履歴詳細</h2>
+	<div class = "row">
+		<div class = "col col-xs-6">
+			<h3>注文情報</h3>
+			<table>
+  				<table border = "1" width = "100%" height = "200" >
+					<tbody>
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">注文日</td>
+							<td align = center>
+								<%= @order.created_at.strftime('%Y/%m/%d %H:%M') %>
+							</td>
+						</tr>
+
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">配送先</td>
+							<td align = center>
+								<%= @order.address %>
+							</td>
+						</tr>
+
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">支払方法</td>
+							<td align = center>
+								<%= render 'orders/pay_method', order: @order %>
+							</td>
+						</tr>
+
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">ステータス</td>
+							<td align = center>
+								<%= @order.order_status %>
+							</td>
+						</tr>
+					</tbody>
+  				</table>
+			</table>
+
+			<h3>注文内容</h3>
+			<table>
+  				<table border = "1" width = "120%" height = "130" >
+					<thead>
+						<tr>
+							<td align = center width = "60%" bgcolor = "#EEEEEE">商品名</td>
+							<td align = center width = "15%" bgcolor = "#EEEEEE">単価（税込）</td>
+							<td align = center bgcolor = "#EEEEEE">個数</td>
+							<td align = center bgcolor = "#EEEEEE">小計</td>
+						</tr>
+					</thead>
+					<tbody>
+						<% sum = 0 %>
+						<% @order.order_items.each do |order_item| %>
+							<tr>
+								<!-- 商品名の表示 -->
+								<td align = center>
+									<%= order_item.product.name %>
+								</td>
+								<!-- ---------- -->
+
+								<!-- 単価（税込み）の表示 -->
+								<td align = center>
+									<%= order_item.tax_price %>&nbsp;円
+								</td>
+								<!-- ------------------ -->
+
+								<!-- 個数の表示 -->
+								<td align = center>
+									<%= order_item.quantity %>
+								</td>
+								<!-- --------- -->
+
+								<!-- 小計の表示 -->
+								<td align = center>
+									<%= syoukei = order_item.tax_price * order_item.quantity %>&nbsp;円
+								</td>
+								<% sum = sum + syoukei %>
+							</tr>
+						<% end %>
+					</tbody>
+  				</table>
+			</table>
+		</div>
+
+		<div class = "col col-xs-6">
+			<h3>請求情報</h3>
+			<table>
+   				<table border = "1" width = "100%" height = "130" >
+					<tbody>
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">商品合計</td>
+							<td align = center>
+								<%= sum %>&nbsp;円
+							</td>
+						</tr>
+
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">配送料</td>
+							<td align = center>
+								<%= @order.postage %>&nbsp;円
+							</td>
+						</tr>
+
+						<tr>
+							<td align = center bgcolor = "#EEEEEE">ご請求額</td>
+							<td align = center>
+								<%= sum + @order.postage %>&nbsp;円
+							</td>
+						</tr>
+					</tbody>
+  				</table>
+			</table>
+		</div>
+	</div>
+</div>
+
+<div class = "button">
+	<div style = "text-align: center">
+		<%= link_to '商品を探す', products_path, class: "btn btn-sm btn-primary" %>&emsp;
+		<%= link_to '注文履歴一覧に戻る', orders_path, class: "btn btn-sm btn-primary" %>&emsp;
+		<%= link_to 'トップページに戻る', root_path, class: "btn btn-sm btn-primary" %>
+	</div>
+</div>
+

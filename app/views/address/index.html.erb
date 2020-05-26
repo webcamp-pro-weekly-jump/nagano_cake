@@ -1,0 +1,71 @@
+
+<div class="container">
+ <div class="row">
+ 
+   <div class="col-xs-10,col-xs-offset-6">
+	<h3>配送先登録/一覧</h3>
+	<%= form_for(@address, url: address_index_path) do |f| %>
+	<table>
+	 
+      <tr>
+	  <th>郵便番号（ハイフンなし）</th>
+	    <td><%= f.number_field :pastal_code, placeholder: "郵便番号(ハイフンなし)", class: "form-control" %></td>
+
+	  </tr>
+      <tr>
+	  <th>住所</th>
+	    <td><%= f.text_field :address, placeholder: "住所", class: "form-control" %></td>
+	  </tr>
+
+      <tr>
+	  <th>宛名</th>
+	    <td><%= f.text_field :name, placeholder: "宛名", class: "form-control" %></td>
+
+	   <td><%= f.submit "登録", class: "btn btn-success col-xs-offset-10" %></td>
+	 </tr>
+	
+	</div>
+   </table> 
+   <% end %>
+   </div>
+  	<div class="col-xs-10">
+	 <table class="table table-bordered col-xs-12">
+
+		<thead>
+			<tr>
+				<th bgcolor="#e6e6e6" class="col-xs-1">郵便番号</th>
+				<th bgcolor="#e6e6e6" class="col-xs-5">住所</th>
+				<th bgcolor="#e6e6e6" class="col-xs-2">宛名</th>
+	            <th bgcolor="#e6e6e6" class="col-xs-4">    </th>
+			</tr>
+		</thead>
+		<tbody>
+
+			<% @addresses.each do |address| %>
+			<tr>
+			　　<th><%= address.pastal_code %></th>
+			　　<th><%= address.address %></th>
+			　　<th><%= address.name %></th>
+			　　<th>
+				   <%= link_to "編集する", edit_address_path(address.id), class:"btn btn-info" %>
+				   <%= link_to "削除する", address, method: :delete, data: { confirm: 'Are you sure?' }, class:"btn btn-danger" %>
+
+			    </th>
+			 </tr>
+			<% end %>
+
+
+		</tbody>
+	 </table>
+   </div>  
+  
+ </div>
+</div>
+
+
+
+
+
+
+
+

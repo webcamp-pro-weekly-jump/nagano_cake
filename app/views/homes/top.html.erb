@@ -1,0 +1,57 @@
+<div class="container">
+ <div class="row">
+  <div class="col-xs-3">
+<!--ジャンル一覧の表示→各ジャンルへ移動-->
+
+<% flash.each do |message_type, message| %>
+  <%= message %>
+<% end %>
+
+
+ <table class="table table-bordered">
+  <thead>
+    <tr>
+     <th>ジャンル検索</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <%= link_to '全ての商品', products_path %><br>
+        <% @genres.each do |genre| %>
+        <%= link_to products_path(genre_id: genre.id) do %>
+        <%= genre.name %>
+        <% end %><br>
+        <% end %>
+        </td>
+    </tr>
+  </tbody>
+ </table>
+</div>
+<div class="col-xs-9">
+
+<div class="style center-block">
+　<h2>ようこそ、NaganoCakeへ！</h2>
+  <p><strong>このサイトは、ケーキ販売のECサイトのなります。</strong></p>
+  <p><strong>会員でない方も商品の閲覧はできますが、</strong></p>
+  <p><strong>購入には会員登録が必要になります</strong></p>
+</div>
+</div>
+
+<div class="col-xs-12">
+   <h2>オススメ商品</h2>
+    <% @products.each do |product| %>
+     <div class="col-xs-3">
+      <%= link_to product_path(product.id) do %>
+       <%= attachment_image_tag product, :image, :fill, 40, 40, format: 'jpeg', class: "img-rounded",fallback: "no_image.jpg",size:"150x150" %>
+      <% end %><br>
+      <%= product.name %><br>
+      <% tax_price = product.price * 1.08 %>
+      <%= number_to_currency(tax_price, :unit => "¥", :precision => 0) %>
+      </div>
+      <% end %>
+
+     <%= link_to 'もっと見る＞', products_path, class: "pull-right" %>
+   </div>
+  </div>
+</div>

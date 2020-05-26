@@ -1,0 +1,67 @@
+<!-- 商品編集ページ -->
+<div class="container">
+    <div class="row">
+        <div class="col-xs-4">
+          <h2>商品編集</h2>
+          <!-- turbolinkが作動するのでテーブル外にformとendを設置 -->
+          <%= form_for(@product, url: edit_admins_product_path(@product.id)) do |f| %>
+              <table>
+                <thead>
+                    <tbody>
+                        <tr>
+                            <th>商品画像</th>
+                            <td>
+                              <%= f.attachment_field :image %>
+                            </td>
+                        </tr>
+                    </tbody>
+                </thead>
+            </table>
+        <% end %>
+    </div>
+
+    <div class="col-xs-8">
+        <div class="row"><br><br><br>
+            <!-- turbolinkが作動するのでテーブル外にformとendを設置 -->
+            <%= form_for(@product, url: edit_admins_product_path(@product.id)) do |f| %>
+                <table>
+                    <thead>
+                        <tbody>
+                            <tr>
+                                <th>商品名</th>
+                                <td>
+                                  <%= f.text_field :name %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>商品説明</th>
+                                <td>
+                            	  <%= f.text_area :introduction %>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<th>ジャンル</th>
+                                <td>
+                                  <%= f.collection_select :genre_id, Genre.where(is_valid: true), :id, :name, include_blank: "--選択して下さい--" %>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<th>税抜価格</th>
+                                <td>
+                            	  <%= f.text_field :price %>
+                                </td>
+                            </tr>
+                            <tr>
+                            	<th>販売ステータス</th>
+                                <td>
+                                  <%= f.select :is_sale, [["販売中", true], ["販売停止中", false]], include_blank: "--選択してください--" %>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </thead>
+                </table>
+                <%= f.submit '変更を保存', class: "btn btn-sm btn-primary pull-right" %>
+            <% end %>
+        </div>
+    </div>
+</div>

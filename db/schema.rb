@@ -43,7 +43,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
 
   create_table "genres", force: :cascade do |t|
     t.string "name"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -57,10 +57,11 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.string "family_name"
     t.string "first_name"
     t.string "family_name_kana"
+    t.string "first_name_kana"
     t.string "tel"
     t.string "postal_code"
     t.string "address"
-    t.boolean "is_valid"
+    t.boolean "is_valid", default: true, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_members_on_email", unique: true
@@ -72,20 +73,20 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.integer "order_id"
     t.integer "quantity"
     t.integer "tax_price"
-    t.integer "making_status"
+    t.integer "making_status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "name"
-    t.integer "member_id"
-    t.string "postal_code"
-    t.string "address"
-    t.integer "pay_method"
-    t.integer "all_price"
-    t.integer "order_status"
-    t.integer "postage"
+    t.string "name", null: false
+    t.integer "member_id", null: false
+    t.string "postal_code", null: false
+    t.string "address", null: false
+    t.integer "pay_method", default: 0, null: false
+    t.integer "all_price", null: false
+    t.integer "order_status", default: 0, null: false
+    t.integer "postage", default: 800, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -96,7 +97,7 @@ ActiveRecord::Schema.define(version: 2020_05_16_031254) do
     t.string "image_id"
     t.text "introduction"
     t.integer "price"
-    t.boolean "is_sale"
+    t.boolean "is_sale", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

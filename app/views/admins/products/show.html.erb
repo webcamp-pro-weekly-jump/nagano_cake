@@ -1,0 +1,66 @@
+<!-- 商品詳細ページ -->
+<div class="container">
+  <div class="row">
+    <div class="col-xs-4">
+      <h2>商品詳細</h2>
+      <table>
+        <thead>
+          <tbody>
+            <tr>
+              <td>
+                <%= attachment_image_tag @product,:image, :fill, 100, 100, format: 'jpeg' %>
+              </td>
+            </tr>
+          </tbody>
+        </thead>
+      </table>
+    </div>
+
+    <div class="col-xs-8">
+      <div class="row"><br><br><br>
+        <table>
+          <thead>
+            <tbody>
+              <tr>
+                <th>商品名</th>
+                <td>
+                  <%= @product.name %>
+                </td>
+              </tr>
+              <tr>
+                <th>商品説明</th>
+                <td>
+                  <%= @product.introduction %>
+                </td>
+              </tr>
+              <tr>
+                <th>ジャンル</th>
+                <td>
+                  <%= Genre.find_by(id: @product.genre_id).name %>
+                </td>
+              </tr>
+              <tr>
+                <th>税込価格（税抜価格）</th>
+                <td>
+                  <%= number_to_currency(@product.price * 1.08, :unit => "¥", :precision => 0) %>
+                   (<%= @product.price.to_s(:delimited) %>)
+                 </td>
+               </tr>
+               <tr>
+                <th>販売ステータス</th>
+                <td>
+                  <% if @product.is_sale == true %>
+                	  <%= "販売中" %>
+                  <% else %>
+                	  <%= "販売停止中" %>
+                  <% end %>
+                </td>
+               </tr>
+            </tbody>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <%= link_to "編集する",  edit_admins_product_path(@product.id), class: "btn btn-sm btn-primary pull-right" %>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="member index container">
+
+  <h2>会員一覧</h2>
+
+  <table class="table member-index">
+    <table class= "table table-borderless" align = "center" width = "500" height = "100">
+      <thead>
+        <tr height = "40">
+          <th bgcolor = "#EEEEEE">会員ID</th>
+          <th bgcolor = "#EEEEEE">氏名</th>
+          <th bgcolor = "#EEEEEE">メールアドレス</th>
+          <th bgcolor = "#EEEEEE">ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @members.each do |member| %>
+          <tr>
+            <td>
+              <%= member.id %>
+            </td>
+
+            <td>
+              <%= link_to member.family_name + member.first_name, admins_member_path(member.id)%>
+            </td>
+
+            <td>
+              <%= member.email %>
+            </td>
+
+            <td>
+          	  <% if member.is_valid == true %>
+          	    <%= "有効" %>
+          	  <% else %>
+          	    <%= "退会済" %>
+          	  <% end %>
+            </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+    </table>
+    <%= paginate @members %>
+</div>

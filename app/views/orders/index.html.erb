@@ -1,0 +1,60 @@
+<div class = "order index container">
+	<h2>注文履歴一覧</h2>
+	<div class = "order_index">
+		<table border = "1" align = "center" width = "100%" height = "100">
+			<thead>
+				<tr height = "50">
+					<td align = center bgcolor = "#EEEEEE"><strong>注文日</strong></td>
+					<td align = center bgcolor = "#EEEEEE"><strong>配送先</strong></td>
+					<td align = center bgcolor = "#EEEEEE"><strong>注文商品</strong></td>
+					<td align = center bgcolor = "#EEEEEE"><strong>支払金額</strong></td>
+					<td align = center bgcolor = "#EEEEEE"><strong>ステータス</strong></td>
+					<td align = center bgcolor = "#EEEEEE"><strong>注文詳細</strong></td>
+				</tr>
+			</thead>
+
+			<tbody>
+				<% @orders.each do |order| %>
+					<tr>
+						<td align = center>
+							<%= order.created_at.strftime('%Y/%m/%d %H:%M') %>
+						</td>
+
+						<td align = center>
+							<%= order.postal_code + " " + order.address + " " + order.name %>
+						</td>
+
+						<td align = center>
+							<% sum = 0 %>
+							<% order.order_items.each do |order_item| %>
+				  				<%= order_item.product.name %>
+				  				<% syoukei = order_item.tax_price * order_item.quantity %>
+								<% sum = sum + syoukei %>
+							<% end %>
+						</td>
+
+						<td align = center>
+							<%= sum = sum + order.postage %>&nbsp;円
+						</td>
+
+						<td align = center>
+							<%= order.order_status %>
+						</td>
+
+						<td align = "center" valign ="middle" >
+							<%= link_to '表示する', order_path(order), class: "btn btn-sm btn-primary" %>
+						</td>
+					</tr>
+				<% end %>
+				<%= paginate @orders %>
+			</tbody>
+		</table>
+	</div>
+</div>
+
+<div class = "button">
+	<div style = "text-align: center">
+		<%= link_to '商品を探す', products_path, class: "btn btn-sm btn-primary" %>&emsp;
+		<%= link_to 'トップページに戻る', root_path, class: "btn btn-sm btn-primary" %>
+	</div>
+</div>
