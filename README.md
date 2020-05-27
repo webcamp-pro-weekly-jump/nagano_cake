@@ -1,24 +1,33 @@
-# README
+# ながのCAKe
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+概要
+------------
+長野県にある小さな洋菓子店「ながのCAKE」の商品を通販するためのECサイト
 
-Things you may want to cover:
+案件の背景
+------------
+元々近隣住民が顧客だったが、昨年始めたInstagramから人気となり、全国から注文が来るようになった。InstagramのDMやメールで通販の注文を受けていたが、情報管理が煩雑になってきたため、管理機能を含んだ通販サイトを開設しようと思い至った。
 
-* Ruby version
+使用言語
+------------
+- Ruby on Rails
+- HTML/CSS
 
-* System dependencies
+実装した機能
+------------
+### 顧客
 
-* Configuration
+- 顧客機能(ログイン・ログアウト・マイページ)
+- 商品機能(一覧＆詳細表示)
+- カート機能(一覧・追加・編集)
+- 注文機能(注文・履歴一覧＆詳細表示)
+- 退会機能
+- 配送先機能(追加・編集)
 
-* Database creation
+### 管理者
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- 管理者機能(ログイン・ログアウト)
+- 顧客機能(一覧＆詳細の表示・ステータスの変更)
+- 商品機能(一覧＆詳細表示・追加・編集)
+- 注文機能(履歴一覧＆詳細表示・ステータスの変更)
+- ジャンル機能(追加・編集・ステータスの変更)
