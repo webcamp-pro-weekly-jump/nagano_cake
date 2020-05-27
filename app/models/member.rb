@@ -6,7 +6,7 @@ class Member < ApplicationRecord
 
  #リレーション
   has_many :cart_items, dependent: :destroy
-  has_many :orders
+  has_many :orders, dependent: :destroy
   has_many :addresses # 追加しました
   belongs_to :admins, optional: true
 
